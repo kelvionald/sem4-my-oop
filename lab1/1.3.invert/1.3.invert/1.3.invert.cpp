@@ -9,7 +9,7 @@ using namespace std;
 #define WIDTH 3
 #define HEIGHT 3
 
-bool fillMatrix(int (*m)[3][3], ifstream& input) {
+int fillMatrix(int (*m)[HEIGHT][WIDTH], ifstream& input) {
 	int readCount = 0;
 	stringstream ss;
 	string line;
@@ -42,13 +42,42 @@ bool fillMatrix(int (*m)[3][3], ifstream& input) {
 		}
 	}
 
-	if (readCount != 9)
-	{
-		cout << "Incorrect input format\n";
-		return false;
-	}
+	return readCount;
+}
 
-	return true;
+double calcDeterm(int (*_m)[HEIGHT][WIDTH]) {
+	double determ = 0;
+	auto m = *_m;
+	for (int i = 0; i < WIDTH; i++)
+	{
+		double coef = m[0][i];
+		int left = (i + 1) % 3;
+		int right = (i + 2) % 3;
+		int top = 1;
+		int bottom = 2;
+		determ = determ + coef * (m[top][left] * m[bottom][right] - m[top][right] * m[bottom][left]);
+	}
+	return determ;
+}
+
+void showInvertMatrix(int(*_m)[HEIGHT][WIDTH], double determ) {
+	auto m = *_m;
+	for (int i = 0; i < HEIGHT; i++)
+	{
+		for (int j = 0; j < WIDTH; j++)
+		{
+			int top = (j + 1) % 3;
+			int bottom = (j + 2) % 3;
+			int left = (i + 1) % 3;
+			int right = (i + 2) % 3;
+			cout << ((m[top][left] * m[bottom][right]) - (m[top][right] * m[bottom][left])) / determ;
+			if (j < 2)
+			{
+				cout << "\t";
+			}
+		}
+		cout << endl;
+	}
 }
 
 int main(int argc, char* argv[])
@@ -69,46 +98,23 @@ int main(int argc, char* argv[])
 	}
 
 	int m[HEIGHT][WIDTH];
-	if (!fillMatrix(&m, input)) {
+	if (fillMatrix(&m, input) != HEIGHT * WIDTH)
+	{
+		cout << "Incorrect input format\n";
 		return 1;
 	}
 	
 	cout.precision(3);
 	cout.setf(ios::fixed);
 
-	double determ = 0;
-	for (int i = 0; i < 3; i++)
-	{
-		double coef = m[0][i];
-		int left = (i + 1) % 3;
-		int right = (i + 2) % 3;
-		int top = 1;
-		int bottom = 2;
-		determ = determ + coef * (m[top][left] * m[bottom][right] - m[top][right] * m[bottom][left]);
-	}
-
+	double determ = calcDeterm(&m);
 	if (determ == 0)
 	{
 		cout << "Matrix is singular\n";
 		return 1;
 	}
 
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 3; j++)
-		{
-			int top = (j + 1) % 3;
-			int bottom = (j + 2) % 3;
-			int left = (i + 1) % 3;
-			int right = (i + 2) % 3;
-			cout << ((m[top][left] * m[bottom][right]) - (m[top][right] * m[bottom][left])) / determ;
-			if (j < 2)
-			{
-				cout << "\t";
-			}
-		}
-		cout << endl;
-	}
+	showInvertMatrix(&m, determ);
 
 	return 0;
 }
