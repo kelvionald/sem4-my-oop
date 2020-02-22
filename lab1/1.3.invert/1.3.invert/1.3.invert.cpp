@@ -6,37 +6,23 @@
 
 using namespace std;
 
-int main(int argc, char* argv[])
-{
-	if (argc != 2)
-	{
-		cout << "Invalid arguments count\n"
-			 << "Usage: 1.3.invert.exe <matrix file>\n";
-		return 1;
-	}
+#define WIDTH 3
+#define HEIGHT 3
 
-	string matrixFile = argv[1];
-	ifstream input(matrixFile);
-	if (!input.is_open())
-	{
-		cout << "Failed to open '" << matrixFile << "' for reading\n";
-		return 1;
-	}
-
-	int m[3][3];
+bool fillMatrix(int (*m)[3][3], ifstream& input) {
 	int readCount = 0;
 	stringstream ss;
 	string line;
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < HEIGHT; i++)
 	{
 		getline(input, line);
 		ss << line;
-		for (int j = 0; j < 3; j++)
+		for (int j = 0; j < WIDTH; j++)
 		{
 			double element;
 			if (ss >> element)
 			{
-				m[i][j] = element;
+				(*m)[i][j] = element;
 				readCount++;
 			}
 			else
@@ -59,9 +45,34 @@ int main(int argc, char* argv[])
 	if (readCount != 9)
 	{
 		cout << "Incorrect input format\n";
+		return false;
+	}
+
+	return true;
+}
+
+int main(int argc, char* argv[])
+{
+	if (argc != 2)
+	{
+		cout << "Invalid arguments count\n"
+			 << "Usage: 1.3.invert.exe <matrix file>\n";
 		return 1;
 	}
 
+	string matrixFile = argv[1];
+	ifstream input(matrixFile);
+	if (!input.is_open())
+	{
+		cout << "Failed to open '" << matrixFile << "' for reading\n";
+		return 1;
+	}
+
+	int m[HEIGHT][WIDTH];
+	if (!fillMatrix(&m, input)) {
+		return 1;
+	}
+	
 	cout.precision(3);
 	cout.setf(ios::fixed);
 
