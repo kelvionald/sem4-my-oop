@@ -1,15 +1,16 @@
 #include "stdafx.h"
-#include <iostream>
 #include <fstream>
-#include <string>
+#include <iostream>
 #include <sstream>
+#include <string>
 
 using namespace std;
 
 #define WIDTH 3
 #define HEIGHT 3
 
-int fillMatrix(int (*m)[HEIGHT][WIDTH], ifstream& input) {
+int fillMatrix(int (*m)[HEIGHT][WIDTH], ifstream& input)
+{
 	int readCount = 0;
 	stringstream ss;
 	string line;
@@ -45,7 +46,8 @@ int fillMatrix(int (*m)[HEIGHT][WIDTH], ifstream& input) {
 	return readCount;
 }
 
-double calcDeterm(int (*_m)[HEIGHT][WIDTH]) {
+double calcDeterm(int (*_m)[HEIGHT][WIDTH])
+{
 	double determ = 0;
 	auto m = *_m;
 	for (int i = 0; i < WIDTH; i++)
@@ -60,7 +62,8 @@ double calcDeterm(int (*_m)[HEIGHT][WIDTH]) {
 	return determ;
 }
 
-void showInvertMatrix(int(*_m)[HEIGHT][WIDTH], double determ) {
+void showInvertMatrix(int (*_m)[HEIGHT][WIDTH], double determ)
+{
 	auto m = *_m;
 	for (int i = 0; i < HEIGHT; i++)
 	{
@@ -103,7 +106,7 @@ int main(int argc, char* argv[])
 		cout << "Incorrect input format\n";
 		return 1;
 	}
-	
+
 	cout.precision(3);
 	cout.setf(ios::fixed);
 
@@ -118,4 +121,3 @@ int main(int argc, char* argv[])
 
 	return 0;
 }
-
