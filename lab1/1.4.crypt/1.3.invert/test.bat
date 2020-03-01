@@ -46,6 +46,18 @@ rem Дешифрование текста с ключем 33
 fc.exe "%TEMP%\Output.txt" "test-data/InputText.txt" > nul || goto err
 echo Test 10 passed
 
+rem Некорректный режим
+%PROGRAM% noncrypt "" "" 1 > nul && goto err
+echo Test 11 passed
+
+rem Пустое имя входного файла
+%PROGRAM% crypt "" "" 1 > nul && goto err
+echo Test 12 passed
+
+rem Пустое имя выходного файла
+%PROGRAM% crypt "1" "" 1 > nul && goto err
+echo Test 13 passed
+
 echo OK
 exit 0
 
