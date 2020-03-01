@@ -150,14 +150,14 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	ifstream input(args->inputFilepath);
+	ifstream input(args->inputFilepath, ios::binary);
 	if (!input.is_open())
 	{
 		cout << "Failed to open '" << args->inputFilepath << "' for reading\n";
 		return 1;
 	}
 
-	ofstream output(args->outputFilepath);
+	ofstream output(args->outputFilepath, ios::binary);
 	if (!output.is_open())
 	{
 		cout << "Failed to open '" << args->inputFilepath << "' for writing\n";
@@ -170,10 +170,6 @@ int main(int argc, char* argv[])
 		if (args->mode == Modes::CRYPT)
 		{
 			output.put(CryptByte(static_cast<byte>(ch), args->key));
-			if ('g' == ch)
-			{
-				cout << (int)CryptByte(static_cast<byte>(ch), args->key) << endl;
-			}
 		}
 		else if (args->mode == Modes::DECRYPT)
 		{

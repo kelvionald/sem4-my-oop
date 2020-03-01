@@ -22,17 +22,17 @@ rem fc.exe "%TEMP%\Output.txt" "test-data/Empty.txt" > nul || goto err
 echo Test 5 passed
 
 rem Шифрование символа с ключем 10
-%PROGRAM% crypt "test-data/Input3.txt" "%TEMP%\Output.txt" 10 > nul || goto err
+%PROGRAM% crypt "test-data/Input3.txt" "%TEMP%\Output.txt" 10 || goto err
 fc.exe "%TEMP%\Output.txt" "test-data/Output3-10.txt" > nul || goto err
 echo Test 6 passed
 
 rem Шифрование символа с ключем 11
-%PROGRAM% crypt "test-data/Input3.txt" "%TEMP%\Output.txt" 11 > nul || goto err
+%PROGRAM% crypt "test-data/Input3.txt" "%TEMP%\Output.txt" 11 || goto err
 fc.exe "%TEMP%\Output.txt" "test-data/Output3-11.txt" > nul || goto err
 echo Test 7 passed
 
 rem Дешифрование символа с ключем 10
-%PROGRAM% decrypt "test-data/Output3-10.txt" "%TEMP%\Output.txt" 10 > nul || goto err
+%PROGRAM% decrypt "test-data/Output3-10.txt" "%TEMP%\Output.txt" 10 || goto err
 fc.exe "%TEMP%\Output.txt" "test-data/Input3.txt" > nul || goto err
 echo Test 8 passed
 
