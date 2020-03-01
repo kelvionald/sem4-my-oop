@@ -9,7 +9,7 @@ using namespace std;
 #define WIDTH 3
 #define HEIGHT 3
 
-int fillMatrix(int (*m)[HEIGHT][WIDTH], ifstream& input)
+int FillMatrix(int (*m)[HEIGHT][WIDTH], ifstream& input)
 {
 	int readCount = 0;
 	stringstream ss;
@@ -46,7 +46,7 @@ int fillMatrix(int (*m)[HEIGHT][WIDTH], ifstream& input)
 	return readCount;
 }
 
-double calcDeterm(int (*_m)[HEIGHT][WIDTH])
+double CalcDeterm(int (*_m)[HEIGHT][WIDTH])
 {
 	double determ = 0;
 	auto m = *_m;
@@ -62,7 +62,7 @@ double calcDeterm(int (*_m)[HEIGHT][WIDTH])
 	return determ;
 }
 
-void showInvertMatrix(int (*_m)[HEIGHT][WIDTH], double determ)
+void ShowInvertMatrix(int (*_m)[HEIGHT][WIDTH], double determ)
 {
 	auto m = *_m;
 	for (int i = 0; i < HEIGHT; i++)
@@ -101,7 +101,7 @@ int main(int argc, char* argv[])
 	}
 
 	int m[HEIGHT][WIDTH];
-	if (fillMatrix(&m, input) != HEIGHT * WIDTH)
+	if (FillMatrix(&m, input) != HEIGHT * WIDTH)
 	{
 		cout << "Incorrect input format\n";
 		return 1;
@@ -110,14 +110,14 @@ int main(int argc, char* argv[])
 	cout.precision(3);
 	cout.setf(ios::fixed);
 
-	double determ = calcDeterm(&m);
+	double determ = CalcDeterm(&m);
 	if (determ == 0)
 	{
 		cout << "Matrix is singular\n";
 		return 1;
 	}
 
-	showInvertMatrix(&m, determ);
+	ShowInvertMatrix(&m, determ);
 
 	return 0;
 }
