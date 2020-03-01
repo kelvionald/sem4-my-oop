@@ -100,7 +100,10 @@ int ApplyShuffle(byte arr[])
 	for (int i = 0; i < 8; i++)
 	{
 		ch = ch << 1;
-		ch |= static_cast<bool>(arr[i]);
+		if (static_cast<bool>(arr[i]))
+		{
+			ch |= 1;
+		}
 	}
 	return ch;
 }
