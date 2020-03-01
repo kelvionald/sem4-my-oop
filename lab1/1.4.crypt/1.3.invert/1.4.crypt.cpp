@@ -31,6 +31,7 @@ optional<Modes> ParseMode(string mode)
 	{
 		return Modes::DECRYPT;
 	}
+	cout << "Invalid mode, expected 'crypt' or 'decrypt' \n";
 	return nullopt;
 }
 
@@ -43,6 +44,7 @@ optional<byte> ParseKey(string keyString)
 	{
 		return (byte)key;
 	}
+	cout << "Invalid key, expected number 0-255\n";
 	return nullopt;
 }
 
@@ -60,7 +62,17 @@ optional<Args> ParseArgs(int argc, char* argv[])
 	}
 	args.mode = mode.value();
 	args.inputFilepath = argv[2];
+	if (!args.inputFilepath.size())
+	{
+		cout << "Empty input file argument\n";
+		return nullopt;
+	}
 	args.outputFilepath = argv[3];
+	if (!args.outputFilepath.size())
+	{
+		cout << "Empty output file argument\n";
+		return nullopt;
+	}
 	auto key = ParseKey(argv[4]);
 	if (!key)
 	{
