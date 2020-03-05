@@ -50,10 +50,6 @@ optional<byte> ParseKey(string keyString)
 
 optional<Args> ParseArgs(int argc, char* argv[])
 {
-	if (argc != 5)
-	{
-		return nullopt;
-	}
 	Args args;
 	auto mode = ParseMode(argv[1]);
 	if (!mode)
@@ -157,11 +153,18 @@ char DecryptByte(byte ch, byte key)
 
 int main(int argc, char* argv[])
 {
-	auto args = ParseArgs(argc, argv);
+	optional<Args> args;
+	if (argc == 5)
+	{
+		args = ParseArgs(argc, argv);
+	}
+	else
+	{
+		cout << "Invalid arguments count\n";
+	}
 	if (!args)
 	{
-		cout << "Invalid arguments count\n"
-			 << "Usage: 1.3.invert.exe <mode> <input file> <output file> <key> \n";
+		cout << "Usage: 1.3.invert.exe <mode> <input file> <output file> <key> \n";
 		return 1;
 	}
 
