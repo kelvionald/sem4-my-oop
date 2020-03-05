@@ -39,6 +39,7 @@ int main(int argc, char* argv[])
 	{
 		return 0;
 	}
+	cout << "Text not found\n";
 
 	return 1;
 }
