@@ -23,9 +23,9 @@ TEST_CASE("FillArray should throw exception on non float input")
 
 TEST_CASE("MultiplyOnMinimal should multiply the array by the minimum")
 {
-	vector<float> array{ 2, 3, 4, 5 };
+	vector<float> array{ 2, 3.2, 4, 5 };
 	MultiplyOnMinimal(array);
-	vector<float> expected{ 4, 6, 8, 10 };
+	vector<float> expected{ 4, 6.4, 8, 10 };
 	REQUIRE(array == expected);
 
 	array = { 0, 3, 4, 5 };
