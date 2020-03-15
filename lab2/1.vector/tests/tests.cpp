@@ -46,3 +46,11 @@ TEST_CASE("DisplayArray should displays array")
 	DisplayArray(output, array);
 	REQUIRE(output.str() == "4 6 8 10.1 ");
 }
+
+TEST_CASE("SortArray should sort array")
+{
+	vector<float> array{ 6, 2, 3.2, 2.3 };
+	vector<float> expected{ 2, 2.3, 3.2, 6 };
+	SortArray(array);
+	REQUIRE(array == expected);
+}

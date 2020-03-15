@@ -30,3 +30,7 @@ void DisplayArray(std::ostream& output, std::vector<float>& array)
 		output << el << ' ';
 	});
 }
+
+void SortArray(std::vector<float>& array) {
+	sort(array.begin(), array.end());
+}

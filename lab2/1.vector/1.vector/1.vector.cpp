@@ -15,6 +15,7 @@ int main()
 		else
 		{
 			MultiplyOnMinimal(inputArray);
+			SortArray(inputArray);
 			DisplayArray(cout, inputArray);
 		}
 	}
