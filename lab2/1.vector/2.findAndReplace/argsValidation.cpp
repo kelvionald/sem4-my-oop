@@ -3,7 +3,8 @@
 
 using namespace std;
 
-optional<Args> ArgsValidate(int argc, char* argv[]) {
+optional<Args> ArgsValidate(int argc, char* argv[])
+{
 	if (argc != 2)
 	{
 		cout << "Invalid arguments count\n";

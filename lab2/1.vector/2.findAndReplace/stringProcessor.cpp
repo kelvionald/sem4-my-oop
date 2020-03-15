@@ -1,5 +1,6 @@
 #include "pch.h"
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -37,4 +38,13 @@ string FindAndReplace(string const& subject, string const& search, string const&
 	}
 	
 	return result;
+}
+
+void FindAndReplace(std::istream& input, std::ostream& output, Args args)
+{
+	string line;
+	while (getline(input, line))
+	{
+		output << FindAndReplace(line, args.search, args.replace) << endl;
+	}
 }
