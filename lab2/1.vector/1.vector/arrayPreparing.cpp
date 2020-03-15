@@ -9,7 +9,7 @@ void FillArray(std::istream& input, std::vector<float>& array)
 		{
 			array.push_back(value);
 		}
-		else
+		else if (!input.eof())
 		{
 			throw std::exception("Non float input!");
 		}
