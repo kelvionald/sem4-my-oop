@@ -39,3 +39,15 @@ TEST_CASE("FindAndReplace should find and filter all occurrences of the substrin
 	expected = "thought";
 	REQUIRE(result == expected);
 }
+
+TEST_CASE("ArgsValidate should return an argument structure")
+{
+	char* argv1[] = { const_cast<char*>("search"), const_cast<char*>("replace") };
+	optional<Args> args = ArgsValidate(2, argv1);
+	REQUIRE(args.value().search == "search");
+	REQUIRE(args.value().replace == "replace");
+
+	char* argv2[] = { const_cast<char*>("search") };
+	args = ArgsValidate(1, argv2);
+	REQUIRE(!args);
+}
