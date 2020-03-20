@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-	vector<float> inputArray;
+	vector<double> inputArray;
 	try
 	{
 		FillArray(cin, inputArray);
