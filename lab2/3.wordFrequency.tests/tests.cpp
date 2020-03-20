@@ -6,6 +6,7 @@ using namespace std;
 
 TEST_CASE("CalcWordFrequency should return the frequency of occurrence of words")
 {
+	setlocale(LC_CTYPE, "rus");
 	istringstream input("Apple apple apple \n\n\t  Banana apple!\t");
 	Frequency expected = {
 		{ "Apple", 1 },
