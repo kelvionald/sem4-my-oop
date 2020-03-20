@@ -1,17 +1,32 @@
 #include "pch.h"
-#include <set>
-#include <iostream>
+#include <sstream>
+#include <algorithm>
 
 using namespace std;
 
-TEST_CASE("GeneratePrimeNumbersSet should return primes no more than a given number")
+TEST_CASE("CalcWordFrequency should return the frequency of occurrence of words")
 {
-	set<int> primes = GeneratePrimeNumbersSet(13);
-	set<int> expectedSet = { 2, 3, 5, 7, 11, 13 };
-	REQUIRE(primes == expectedSet);
+	setlocale(LC_CTYPE, "rus");
+	istringstream input("Apple apple apple \n\n\t  Banana apple!\t");
+	Frequency expected = {
+		{ "apple", 3 },
+		{ "banana", 1 },
+		{ "apple!", 1 }
+	};
+	Frequency frequency = CalcWordFrequency(input);
+	REQUIRE(frequency == expected);
 
-	primes = GeneratePrimeNumbersSet(100000000);
-	int expectedLength = 5761455;
+	istringstream input2(" \t \n ");
+	Frequency expected2;
+	Frequency frequency2 = CalcWordFrequency(input2);
+	REQUIRE(frequency2 == expected2);
 
-	REQUIRE(primes.size() == expectedLength);
+	istringstream input3("Привет привет Приветик Apple apple");
+	Frequency expected3 = {
+		{ "привет", 2 },
+		{ "приветик", 1 },
+		{ "apple", 2 }
+	};
+	Frequency frequency3 = CalcWordFrequency(input3);
+	REQUIRE(frequency3 == expected3);
 }
