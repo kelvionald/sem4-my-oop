@@ -12,6 +12,7 @@ Frequency CalcWordFrequency(istream& input)
 		input >> word;
 		if (word[0] != '\0')
 		{
+			transform(word.begin(), word.end(), word.begin(), tolower);
 			frequency[word]++;
 		}
 	}
