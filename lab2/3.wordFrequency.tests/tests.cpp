@@ -16,8 +16,8 @@ TEST_CASE("CalcWordFrequency should return the frequency of occurrence of words"
 	Frequency frequency = CalcWordFrequency(input);
 	REQUIRE(frequency == expected);
 
-	istringstream input2("Apple apple apple \n\n\t  Banana apple!\t");
+	istringstream input2(" \t \n ");
 	Frequency expected2;
-	Frequency frequency2 = CalcWordFrequency(input);
+	Frequency frequency2 = CalcWordFrequency(input2);
 	REQUIRE(frequency2 == expected2);
 }
