@@ -40,7 +40,7 @@ string FindAndReplace(string const& subject, string const& search, string const&
 	return result;
 }
 
-void FindAndReplace(std::istream& input, std::ostream& output, Args args)
+void FindAndReplaceStream(std::istream& input, std::ostream& output, Args args)
 {
 	string line;
 	while (getline(input, line))

@@ -9,5 +9,5 @@ int main(int argc, char* argv[])
 	{
 		return 0;
 	}
-	FindAndReplace(cin, cout, args.value());
+	FindAndReplaceStream(cin, cout, args.value());
 }
