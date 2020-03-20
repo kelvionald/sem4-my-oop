@@ -51,3 +51,13 @@ TEST_CASE("ArgsValidate should return an argument structure")
 	args = ArgsValidate(1, argv2);
 	REQUIRE(!args);
 }
+
+TEST_CASE("test")
+{
+	string subject = "abcbc";
+	string search = "abc";
+	string replace = "ddd";
+	string result = FindAndReplace(subject, search, replace);
+	string expected = "dddbc";
+	REQUIRE(result == expected);
+}
