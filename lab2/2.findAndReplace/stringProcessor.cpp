@@ -4,7 +4,8 @@
 
 using namespace std;
 
-string FindAndReplace(string const& subject, string const& search, string const& replace) {
+string FindAndReplace(string const& subject, string const& search, string const& replace)
+{
 	string::size_type lastIndex = 0;
 	string result;
 	string::size_type searchSize = search.size();
@@ -36,7 +37,7 @@ string FindAndReplace(string const& subject, string const& search, string const&
 			break;
 		}
 	}
-	
+
 	return result;
 }
 

@@ -31,6 +31,7 @@ void DisplayArray(std::ostream& output, std::vector<double>& array)
 	});
 }
 
-void SortArray(std::vector<double>& array) {
+void SortArray(std::vector<double>& array)
+{
 	sort(array.begin(), array.end());
 }

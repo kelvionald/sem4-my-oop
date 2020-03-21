@@ -4,8 +4,10 @@
 
 using namespace std;
 
-void DisplayError(string message) {
-	cout << message << endl << "Usage: primeNumbers.exe <max number>\n";
+void DisplayError(string message)
+{
+	cout << message << endl
+		 << "Usage: primeNumbers.exe <max number>\n";
 }
 
 int main(int argc, char* argv[])

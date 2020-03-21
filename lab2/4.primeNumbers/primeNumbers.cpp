@@ -1,11 +1,12 @@
 #include "pch.h"
 #include "primeNumbers.h"
-#include <vector>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-set<int> GeneratePrimeNumbersSet(int upperBound) {
+set<int> GeneratePrimeNumbersSet(int upperBound)
+{
 	upperBound++;
 	set<int> primes;
 	vector<bool> numbers(upperBound, true);

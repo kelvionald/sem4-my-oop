@@ -1,6 +1,6 @@
 #include "pch.h"
-#include <sstream>
 #include "1.vector/arrayProcessor.h"
+#include <sstream>
 
 using namespace std;
 
