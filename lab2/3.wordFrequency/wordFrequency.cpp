@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "wordFrequency.h"
+#include <algorithm>
 
 using namespace std;
 
