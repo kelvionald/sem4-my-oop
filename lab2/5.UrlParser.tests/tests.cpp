@@ -67,4 +67,8 @@ TEST_CASE("GeneratePrimeNumbersSet should return primes no more than a given num
 	url = "127.0.0.1";
 	result = ParseURL(url, protocol, port, host, document);
 	REQUIRE(!result);
+
+	url = "FTP://127.0.0.1:65536";
+	result = ParseURL(url, protocol, port, host, document);
+	REQUIRE(!result);
 }

@@ -29,11 +29,20 @@ optional<Protocol> DetermineProtocol(string protocolStr)
 	return protocol;
 }
 
-int DeterminePort(string portStr, Protocol& protocol)
+optional<int> DeterminePort(string portStr, Protocol& protocol)
 {
+	int port;
 	if (portStr.size())
 	{
-		return atoi(portStr.c_str());
+		port = atoi(portStr.c_str());
+		if (1 <= port && port <= 65535)
+		{
+			return port;
+		}
+		else
+		{
+			return nullopt;
+		}
 	}
 	switch (protocol)
 	{
@@ -65,8 +74,13 @@ bool ParseURL(string const& url, Protocol& protocol, int& port, string& host, st
 		return false;
 	}
 	protocol = protocolResult.value();
+	optional<int> portResult = DeterminePort(matchResult[4], protocol);
+	if (!portResult)
+	{
+		return false;
+	}
 	host = matchResult[2];
-	port = DeterminePort(matchResult[4], protocol);
+	port = portResult.value();
 	document = matchResult[6];
 	return true;
 }
