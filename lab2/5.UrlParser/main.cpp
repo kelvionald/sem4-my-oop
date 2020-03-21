@@ -1,10 +1,26 @@
-﻿// 5.UrlParser.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
-#include "pch.h"
+﻿#include "pch.h"
 #include <iostream>
+#include <string>
+#include "UrlParser.h"
+
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n"; 
+	Protocol protocol;
+	int port;
+	string host;
+	string document;
+
+	string url;
+	while (getline(cin, url))
+	{
+		if (ParseURL(url, protocol, port, host, document))
+		{
+			cout << url << endl;
+			cout << "HOST: " << host << endl;
+			cout << "PORT: " << port << endl;
+			cout << "DOC: " << document << endl;
+		}
+	}
 }
