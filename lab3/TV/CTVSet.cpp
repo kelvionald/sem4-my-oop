@@ -18,6 +18,7 @@ void CTVSet::SelectChannel(int channel)
 	}
 	if (m_minChannel <= channel && channel <= m_maxChannel)
 	{
+		m_previousChannel = m_channel;
 		m_channel = channel;
 	}
 }
@@ -34,4 +35,15 @@ int CTVSet::GetChannel() const
 bool CTVSet::IsTurnedOn() const
 {
 	return m_isEnabled;
+}
+
+void CTVSet::SelectPreviousChannel()
+{
+	if (!m_isEnabled || m_previousChannel == 0)
+	{
+		return;
+	}
+	int swap = m_previousChannel;
+	m_previousChannel = m_channel;
+	m_channel = swap;
 }

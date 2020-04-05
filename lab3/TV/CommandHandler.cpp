@@ -39,6 +39,10 @@ void HandleTvCommands(std::istream& input, std::ostream& output, CTVSet& tv)
 			output << "TV is turned " << (tv.IsTurnedOn() ? "on" : "off") << endl;
 			output << "Current channel " << tv.GetChannel() << endl;
 		}
+		else if (command == "SelectPreviousChannel")
+		{
+			tv.SelectPreviousChannel();
+		}
 		else
 		{
 			output << "Undefined command" << endl;
