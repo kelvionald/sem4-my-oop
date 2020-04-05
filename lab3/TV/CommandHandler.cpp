@@ -5,9 +5,9 @@ using namespace std;
 void HandleTvCommands(std::istream& input, std::ostream& output, CTVSet& tv)
 {
 	string command;
-	while (true)
+	while (!input.eof())
 	{
-		cin >> command;
+		input >> command;
 		if (command == "TurnOn")
 		{
 			if (!tv.IsTurnedOn())
@@ -25,26 +25,23 @@ void HandleTvCommands(std::istream& input, std::ostream& output, CTVSet& tv)
 		else if (command == "SelectChannel")
 		{
 			int channel;
-			if (cin >> channel)
+			if (input >> channel)
 			{
 				tv.SelectChannel(channel);
 			}
 			else
 			{
-				cout << "Input error";
+				output << "Input error";
 			}
 		}
 		else if (command == "Info")
 		{
-			if (tv.IsTurnedOn())
-			{
-				cout << "TV is turned on" << endl;
-			}
-			else
-			{
-				cout << "TV is turned off" << endl;
-			}
-			cout << "Current channel " << tv.GetChannel() << endl;
+			output << "TV is turned " << (tv.IsTurnedOn() ? "on" : "off") << endl;
+			output << "Current channel " << tv.GetChannel() << endl;
+		}
+		else
+		{
+			output << "Undefined command" << endl;
 		}
 	}
 }
