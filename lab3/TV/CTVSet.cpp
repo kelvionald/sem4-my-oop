@@ -1,4 +1,5 @@
 #include "CTVSet.h"
+#include <utility>
 
 void CTVSet::TurnOff()
 {
@@ -43,7 +44,5 @@ void CTVSet::SelectPreviousChannel()
 	{
 		return;
 	}
-	int swap = m_previousChannel;
-	m_previousChannel = m_channel;
-	m_channel = swap;
+	std::swap(m_channel, m_previousChannel);
 }
