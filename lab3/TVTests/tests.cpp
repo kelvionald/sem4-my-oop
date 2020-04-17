@@ -14,34 +14,31 @@ TEST_CASE("TV should be turned off and channel is 0")
 	REQUIRE(output.str() == "TV is turned off\nCurrent channel 0\n");
 }
 
-TEST_CASE("TV should have current channel is 1")
-{
-	CTVSet tv;
-	tv.TurnOn();
-	istringstream input("Info");
-	ostringstream output;
-	HandleTvCommands(input, output, tv);
-	cout << output.str() << endl;
-	REQUIRE(tv.GetChannel() == 1);
-}
-
 TEST_CASE("TV should be turned on after use command TurnOn")
 {
 	istringstream input("TurnOn");
 	ostringstream output;
 	CTVSet tv;
 	HandleTvCommands(input, output, tv);
-	REQUIRE(tv.IsTurnedOn());
+	REQUIRE(output.str() == "TV is turned on\n");
+}
+
+TEST_CASE("TV should have current channel is 1")
+{
+	CTVSet tv;
+	istringstream input("TurnOn\nInfo");
+	ostringstream output;
+	HandleTvCommands(input, output, tv);
+	REQUIRE(output.str() == "TV is turned on\nTV is turned on\nCurrent channel 1\n");
 }
 
 TEST_CASE("TV should be turned off after use command TurnOff")
 {
-	istringstream input("TurnOff");
-	ostringstream output;
 	CTVSet tv;
-	tv.TurnOn();
+	istringstream input("TurnOn\nTurnOff");
+	ostringstream output;
 	HandleTvCommands(input, output, tv);
-	REQUIRE(!tv.IsTurnedOn());
+	REQUIRE(output.str() == "TV is turned on\nTV is turned off\n");
 }
 
 TEST_CASE("Turned off TV should not change channel")
@@ -50,64 +47,60 @@ TEST_CASE("Turned off TV should not change channel")
 	ostringstream output;
 	CTVSet tv;
 	HandleTvCommands(input, output, tv);
-	REQUIRE(tv.GetChannel() == 0);
+	REQUIRE(output.str() == "Error. TV is turned off\n");
 }
 
 TEST_CASE("Turned on TV should change channel in allow range channels")
 {
-	istringstream input("SelectChannel\n5");
+	istringstream input("TurnOn\nSelectChannel\n5");
 	ostringstream output;
 	CTVSet tv;
-	tv.TurnOn();
 	HandleTvCommands(input, output, tv);
-	REQUIRE(tv.GetChannel() == 5);
+	REQUIRE(output.str() == "TV is turned on\nSelected channel 5\n");
 }
 
 TEST_CASE("Turned on TV should not change channel when channel out of range")
 {
-	istringstream input("SelectChannel\n100");
+	istringstream input("TurnOn\nSelectChannel\n100");
 	ostringstream output;
 	CTVSet tv;
-	tv.TurnOn();
 	HandleTvCommands(input, output, tv);
-	REQUIRE(tv.GetChannel() == 1);
+	REQUIRE(output.str() == "TV is turned on\nError. Channel is out of allow range\n");
 }
 
 TEST_CASE("Turned on TV should not change channel when input is bad")
 {
-	istringstream input("SelectChannel\nBADINPUT");
+	istringstream input("TurnOn\nSelectChannel\nF");
 	ostringstream output;
 	CTVSet tv;
-	tv.TurnOn();
 	HandleTvCommands(input, output, tv);
-	REQUIRE(tv.GetChannel() == 1);
+	REQUIRE(output.str() == "TV is turned on\nError. Input error\nUndefined command 'F'\n");
 }
 
-TEST_CASE("Turned on TV should have channel 5 after repeat turn on")
+TEST_CASE("Turned on TV should have channel that was before turning off")
 {
+	istringstream input("TurnOn\nSelectChannel\n10\nTurnOff\nTurnOn\nInfo");
+	ostringstream output;
 	CTVSet tv;
-	tv.TurnOn();
-	tv.SelectChannel(10);
-	tv.TurnOff();
-	tv.TurnOn();
-	REQUIRE(tv.GetChannel() == 10);
+	HandleTvCommands(input, output, tv);
+	REQUIRE(output.str() == "TV is turned on\nSelected channel 10\nTV is turned off\nTV is turned on\n" 
+		"TV is turned on\nCurrent channel 10\n");
 }
 
 TEST_CASE("Turned on TV should not have previous channel")
 {
+	istringstream input("TurnOn\nSelectPreviousChannel\nInfo");
+	ostringstream output;
 	CTVSet tv;
-	tv.TurnOn();
-	tv.SelectPreviousChannel();
-	REQUIRE(tv.GetChannel() == 1);
+	HandleTvCommands(input, output, tv);
+	REQUIRE(output.str() == "TV is turned on\nTV is turned on\nCurrent channel 1\n");
 }
 
 TEST_CASE("Turned on TV should have previous channel after change channel")
 {
-	CTVSet tv;
-	tv.TurnOn();
-	tv.SelectChannel(2);
-	istringstream input("SelectPreviousChannel");
+	istringstream input("TurnOn\nSelectChannel\n5\nSelectPreviousChannel\nInfo");
 	ostringstream output;
+	CTVSet tv;
 	HandleTvCommands(input, output, tv);
-	REQUIRE(tv.GetChannel() == 1);
+	REQUIRE(output.str() == "TV is turned on\nSelected channel 5\nTV is turned on\nCurrent channel 1\n");
 }

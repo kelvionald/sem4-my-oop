@@ -9,6 +9,7 @@ public:
 	int GetChannel() const;
 	bool IsTurnedOn() const;
 	void SelectPreviousChannel();
+	bool IsAllowRange(int channel);
 
 private:
 	bool m_isEnabled = false;

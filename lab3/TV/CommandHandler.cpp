@@ -13,6 +13,7 @@ void HandleTvCommands(std::istream& input, std::ostream& output, CTVSet& tv)
 			if (!tv.IsTurnedOn())
 			{
 				tv.TurnOn();
+				output << "TV is turned on\n";
 			}
 			else
 			{
@@ -24,6 +25,7 @@ void HandleTvCommands(std::istream& input, std::ostream& output, CTVSet& tv)
 			if (tv.IsTurnedOn())
 			{
 				tv.TurnOff();
+				output << "TV is turned off\n";
 			}
 			else
 			{
@@ -35,11 +37,22 @@ void HandleTvCommands(std::istream& input, std::ostream& output, CTVSet& tv)
 			int channel;
 			if (input >> channel)
 			{
+				if (!tv.IsTurnedOn())
+				{
+					output << "Error. TV is turned off\n";
+					continue;
+				}
+				else if (!tv.IsAllowRange(channel))
+				{
+					output << "Error. Channel is out of allow range\n";
+					continue;
+				}
 				tv.SelectChannel(channel);
+				output << "Selected channel " << channel << "\n";
 			}
 			else
 			{
-				output << "Input error\n";
+				output << "Error. Input error\n";
 				input.clear();
 			}
 		}
@@ -54,7 +67,7 @@ void HandleTvCommands(std::istream& input, std::ostream& output, CTVSet& tv)
 		}
 		else
 		{
-			output << "Undefined command" << endl;
+			output << "Undefined command '" << command << "'" << endl;
 		}
 	}
 }
