@@ -59,13 +59,40 @@ TEST_CASE("Turned on TV should change channel in allow range channels")
 	REQUIRE(output.str() == "TV is turned on\nSelected channel 5\n");
 }
 
-TEST_CASE("Turned on TV should not change channel when channel out of range")
+TEST_CASE("Turned on TV should not change channel when channel out of end range")
 {
 	istringstream input("TurnOn\nSelectChannel\n100");
 	ostringstream output;
 	CTVSet tv;
 	HandleTvCommands(input, output, tv);
 	REQUIRE(output.str() == "TV is turned on\nError. Channel is out of allow range\n");
+}
+
+TEST_CASE("Turned on TV should change channel when channel allow end range")
+{
+	istringstream input("TurnOn\nSelectChannel\n99");
+	ostringstream output;
+	CTVSet tv;
+	HandleTvCommands(input, output, tv);
+	REQUIRE(output.str() == "TV is turned on\nSelected channel 99\n");
+}
+
+TEST_CASE("Turned on TV should not change channel when channel out of start range")
+{
+	istringstream input("TurnOn\nSelectChannel\n0");
+	ostringstream output;
+	CTVSet tv;
+	HandleTvCommands(input, output, tv);
+	REQUIRE(output.str() == "TV is turned on\nError. Channel is out of allow range\n");
+}
+
+TEST_CASE("Turned on TV should change channel when channel allow start range")
+{
+	istringstream input("TurnOn\nSelectChannel\n1");
+	ostringstream output;
+	CTVSet tv;
+	HandleTvCommands(input, output, tv);
+	REQUIRE(output.str() == "TV is turned on\nSelected channel 1\n");
 }
 
 TEST_CASE("Turned on TV should not change channel when input is bad")
