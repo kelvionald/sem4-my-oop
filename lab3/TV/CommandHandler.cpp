@@ -14,12 +14,20 @@ void HandleTvCommands(std::istream& input, std::ostream& output, CTVSet& tv)
 			{
 				tv.TurnOn();
 			}
+			else
+			{
+				output << "TV is already on\n";
+			}
 		}
 		else if (command == "TurnOff")
 		{
 			if (tv.IsTurnedOn())
 			{
 				tv.TurnOff();
+			}
+			else
+			{
+				output << "TV is already off\n";
 			}
 		}
 		else if (command == "SelectChannel")
@@ -31,7 +39,7 @@ void HandleTvCommands(std::istream& input, std::ostream& output, CTVSet& tv)
 			}
 			else
 			{
-				output << "Input error";
+				output << "Input error\n";
 				input.clear();
 			}
 		}
