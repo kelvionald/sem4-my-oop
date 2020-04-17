@@ -73,6 +73,16 @@ TEST_CASE("Turned on TV should not change channel when channel out of range")
 	REQUIRE(tv.GetChannel() == 1);
 }
 
+TEST_CASE("Turned on TV should not change channel when input is bad")
+{
+	istringstream input("SelectChannel\nBADINPUT");
+	ostringstream output;
+	CTVSet tv;
+	tv.TurnOn();
+	HandleTvCommands(input, output, tv);
+	REQUIRE(tv.GetChannel() == 1);
+}
+
 TEST_CASE("Turned on TV should have channel 5 after repeat turn on")
 {
 	CTVSet tv;

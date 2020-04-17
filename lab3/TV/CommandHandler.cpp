@@ -32,6 +32,7 @@ void HandleTvCommands(std::istream& input, std::ostream& output, CTVSet& tv)
 			else
 			{
 				output << "Input error";
+				input.clear();
 			}
 		}
 		else if (command == "Info")
