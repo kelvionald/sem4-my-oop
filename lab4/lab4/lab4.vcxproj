@@ -154,11 +154,13 @@
     <ClCompile Include="CTriangle.cpp" />
     <ClCompile Include="CUtils.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Program.cpp" />
     <ClCompile Include="SolidShape.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCircle.h" />
     <ClInclude Include="CLineSegment.h" />
+    <ClInclude Include="Program.h" />
     <ClInclude Include="CPoint.h" />
     <ClInclude Include="CRectangle.h" />
     <ClInclude Include="CTriangle.h" />

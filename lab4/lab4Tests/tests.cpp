@@ -7,8 +7,11 @@
 #include <lab4\lab4\CCircle.h>
 #include <lab4\lab4\CTriangle.h>
 #include <lab4\lab4\CRectangle.h>
+#include <lab4\lab4\Program.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -31,11 +34,48 @@ TEST_CASE("CPoint")
 
 TEST_CASE("CUtils")
 {
-	CPoint point(1, 2);
 	SECTION("GetDistance should returns distance between two points")
 	{
+		CPoint point(1, 2);
 		double distance = CUtils::GetDistance(CPoint(0, 0), CPoint(1, 1));
 		REQUIRE(distance == sqrt(2));
+	}
+	SECTION("Split should returns splitted array")
+	{
+		SECTION("with end space")
+		{
+			CPoint point(1, 2);
+			auto arr = CUtils::Split("1 2 3 4 ", " ");
+			REQUIRE(arr.size() == 4);
+			REQUIRE(arr == vector<string>{ "1", "2", "3", "4" });
+		}
+		SECTION("without end space")
+		{
+			CPoint point(1, 2);
+			auto arr = CUtils::Split("1 2 3 4", " ");
+			REQUIRE(arr.size() == 4);
+			REQUIRE(arr == vector<string>{ "1", "2", "3", "4" });
+		}
+	}
+	SECTION("IsValidHexColor should validate hex string")
+	{
+		SECTION("length should be 6 symbols")
+		{
+			REQUIRE(!CUtils::IsValidHexColor("00000"));
+			REQUIRE(!CUtils::IsValidHexColor("0000000"));
+			REQUIRE(CUtils::IsValidHexColor("000000"));
+		}
+		SECTION("allows only hex chars")
+		{
+			REQUIRE(CUtils::IsValidHexColor("abcdef"));
+			REQUIRE(CUtils::IsValidHexColor("ABCDEF"));
+			REQUIRE(CUtils::IsValidHexColor("123456"));
+			REQUIRE(!CUtils::IsValidHexColor("12315H"));
+		}
+	}
+	SECTION("ParseColor should returns uint color")
+	{
+		REQUIRE(CUtils::ParseColor("ffffff") == 16777215);
 	}
 }
 
@@ -156,5 +196,65 @@ TEST_CASE("CRectangle")
 	SECTION("GetHeight should returns height")
 	{
 		REQUIRE(rectangle.GetHeight() == 8);
+	}
+}
+
+TEST_CASE("Program")
+{
+	SECTION("ReadShapes should reads shapes")
+	{
+		Program program;
+		istringstream input("triangle 1.0 1.0 1.0 2.0 2.0 1.0 ffffff 000000\n"
+							"lineSegment 1.0 1.0 1.0 2.0 ffffff");
+		program.ReadShapes(input);
+		SECTION("lineSegment reading")
+		{
+			CLineSegment* lineSegment = dynamic_cast<CLineSegment*>(program.GetShapeByIndex(1));
+			REQUIRE(lineSegment->GetStartPoint() == CPoint(1, 1));
+			REQUIRE(lineSegment->GetEndPoint() == CPoint(1, 2));
+			REQUIRE(lineSegment->GetOutlineColor() == 16777215);
+		}
+	}
+	SECTION("ReadLineSegment should reads lineSegment")
+	{
+		Program program;
+		stringstream input("1.0 1.0 1.0 2.0 ffffff");
+		CLineSegment* lineSegment = program.ReadLineSegment(input);
+		REQUIRE(lineSegment->GetStartPoint() == CPoint(1, 1));
+		REQUIRE(lineSegment->GetEndPoint() == CPoint(1, 2));
+		REQUIRE(lineSegment->GetOutlineColor() == 16777215);
+	}
+	SECTION("ReadTriangle should reads triangle")
+	{
+		Program program;
+		stringstream input("1.0 1.0 1.0 2.0 2.0 1.0 ffffff 000000");
+		CTriangle* lineSegment = program.ReadTriangle(input);
+		REQUIRE(lineSegment->GetVertex1() == CPoint(1, 1));
+		REQUIRE(lineSegment->GetVertex2() == CPoint(1, 2));
+		REQUIRE(lineSegment->GetVertex3() == CPoint(2, 1));
+		REQUIRE(lineSegment->GetOutlineColor() == 16777215);
+		REQUIRE(lineSegment->GetFillColor() == 0);
+	}
+	SECTION("ReadRectangle should reads rectangle")
+	{
+		Program program;
+		stringstream input("1.0 1.0 2.0 3.0 ffffff 000000");
+		CRectangle* lineSegment = program.ReadRectangle(input);
+		REQUIRE(lineSegment->GetLeftTop() == CPoint(1, 1));
+		REQUIRE(lineSegment->GetRightBottom() == CPoint(3, 4));
+		REQUIRE(lineSegment->GetWidth() == 2);
+		REQUIRE(lineSegment->GetHeight() == 3);
+		REQUIRE(lineSegment->GetOutlineColor() == 16777215);
+		REQUIRE(lineSegment->GetFillColor() == 0);
+	}
+	SECTION("ReadCircle should reads rectangle")
+	{
+		Program program;
+		stringstream input("1.0 1.0 2.0 ffffff 000000");
+		CCircle* lineSegment = program.ReadCircle(input);
+		REQUIRE(lineSegment->GetCenter() == CPoint(1, 1));
+		REQUIRE(lineSegment->GetRadius() == 2);
+		REQUIRE(lineSegment->GetOutlineColor() == 16777215);
+		REQUIRE(lineSegment->GetFillColor() == 0);
 	}
 }
