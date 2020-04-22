@@ -33,11 +33,6 @@ uint32_t CLineSegment::GetOutlineColor()
 	return m_outlineColor;
 }
 
-void CLineSegment::SetOutlineColor(uint32_t outlineColor)
-{
-	m_outlineColor = outlineColor;
-}
-
 CPoint CLineSegment::GetStartPoint()
 {
 	return m_startPoint;
@@ -46,14 +41,4 @@ CPoint CLineSegment::GetStartPoint()
 CPoint CLineSegment::GetEndPoint()
 {
 	return m_endPoint;
-}
-
-void CLineSegment::SetStartPoint(CPoint point)
-{
-	m_startPoint = point;
-}
-
-void CLineSegment::SetEndPoint(CPoint point)
-{
-	m_endPoint = point;
 }

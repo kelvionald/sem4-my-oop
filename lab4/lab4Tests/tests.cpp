@@ -6,6 +6,7 @@
 #include <lab4\lab4\CLineSegment.h>
 #include <lab4\lab4\CCircle.h>
 #include <lab4\lab4\CTriangle.h>
+#include <lab4\lab4\CRectangle.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
 
@@ -60,11 +61,6 @@ TEST_CASE("CLineSegment")
 	{
 		REQUIRE(lineSegment.GetOutlineColor() == 0);
 	}
-	SECTION("SetOutlineColor should set outline color")
-	{
-		lineSegment.SetOutlineColor(1);
-		REQUIRE(lineSegment.GetOutlineColor() == 1);
-	}
 	SECTION("GetStartPoint should returns start point")
 	{
 		REQUIRE(lineSegment.GetStartPoint() == start);
@@ -72,17 +68,6 @@ TEST_CASE("CLineSegment")
 	SECTION("GetEndPoint should returns end point")
 	{
 		REQUIRE(lineSegment.GetEndPoint() == end);
-	}
-	CPoint newPoint(2, 2);
-	SECTION("SetStartPoint should set start point")
-	{
-		lineSegment.SetStartPoint(newPoint);
-		REQUIRE(lineSegment.GetStartPoint() == newPoint);
-	}
-	SECTION("SetEndPoint should set end point")
-	{
-		lineSegment.SetEndPoint(newPoint);
-		REQUIRE(lineSegment.GetEndPoint() == newPoint);
 	}
 }
 
@@ -104,19 +89,9 @@ void testsGeneratorSolidShape(ISolidShape& solidShape, double area, double perim
 	{
 		REQUIRE(solidShape.GetOutlineColor() == outlineColor);
 	}
-	SECTION("SetOutlineColor should set outline color")
-	{
-		solidShape.SetOutlineColor(2);
-		REQUIRE(solidShape.GetOutlineColor() == 2);
-	}
 	SECTION("GetFillColor should returns fill color")
 	{
 		REQUIRE(solidShape.GetFillColor() == fillColor);
-	}
-	SECTION("SetFillColor should set fill color")
-	{
-		solidShape.SetFillColor(2);
-		REQUIRE(solidShape.GetFillColor() == 2);
 	}
 }
 
@@ -156,5 +131,30 @@ TEST_CASE("CTriangle")
 	SECTION("GetVertex1 should returns vertex C")
 	{
 		REQUIRE(triangle.GetVertex3() == c);
+	}
+}
+
+TEST_CASE("CRectangle")
+{
+	CPoint leftTop(0, 0);
+	CRectangle rectangle(leftTop, 10, 8, 1, 1);
+	string expectedStr = "Rectangle(Point(0.000000; 0.000000); 10.000000; 8.000000; 1; 1)";
+	testsGeneratorSolidShape(rectangle, 80, 36, expectedStr, 1, 1);
+	SECTION("GetLeftTop should returns left top point")
+	{
+		REQUIRE(rectangle.GetLeftTop() == leftTop);
+	}
+	SECTION("GetRightBottom should returns right bottom point")
+	{
+		CPoint rightBottom(10, 8);
+		REQUIRE(rectangle.GetRightBottom() == rightBottom);
+	}
+	SECTION("GetWidth should returns width")
+	{
+		REQUIRE(rectangle.GetWidth() == 10);
+	}
+	SECTION("GetHeight should returns height")
+	{
+		REQUIRE(rectangle.GetHeight() == 8);
 	}
 }

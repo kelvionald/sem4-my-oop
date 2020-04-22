@@ -8,5 +8,4 @@ public:
 	virtual double GetPerimeter() = 0;
 	virtual std::string ToString() = 0;
 	virtual uint32_t GetOutlineColor() = 0;
-	virtual void SetOutlineColor(uint32_t color) = 0;
 };

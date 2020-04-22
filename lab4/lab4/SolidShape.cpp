@@ -11,17 +11,7 @@ uint32_t SolidShape::GetOutlineColor()
 	return m_outlineColor;
 }
 
-void SolidShape::SetOutlineColor(uint32_t color)
-{
-	m_outlineColor = color;
-}
-
 uint32_t SolidShape::GetFillColor()
 {
 	return m_fillColor;
-}
-
-void SolidShape::SetFillColor(uint32_t color)
-{
-	m_fillColor = color;
 }

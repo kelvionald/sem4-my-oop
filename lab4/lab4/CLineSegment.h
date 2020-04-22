@@ -10,11 +10,8 @@ public:
 	virtual double GetPerimeter() override;
 	virtual std::string ToString() override;
 	virtual uint32_t GetOutlineColor() override;
-	virtual void SetOutlineColor(uint32_t outlineColor) override;
 	CPoint GetStartPoint();
 	CPoint GetEndPoint();
-	void SetStartPoint(CPoint point);
-	void SetEndPoint(CPoint point);
 
 private:
 	uint32_t m_outlineColor;
