@@ -13,7 +13,7 @@ public:
 	virtual uint32_t GetFillColor() override;
 	virtual void SetFillColor(uint32_t color) override;
 
-private:
+protected:
 	uint32_t m_outlineColor;
 	uint32_t m_fillColor;
 };

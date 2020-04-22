@@ -52,7 +52,7 @@ TEST_CASE("CLineSegment")
 	}
 	SECTION("ToString should returns string value")
 	{
-		string expected = "LineSegment(Point(0.000000; 0.000000); Point(1.000000; 1.000000))";
+		string expected = "LineSegment(Point(0.000000; 0.000000); Point(1.000000; 1.000000); 0)";
 		REQUIRE(lineSegment.ToString() == expected);
 	}
 	SECTION("GetOutlineColor should returns outline color")
@@ -113,7 +113,7 @@ void testsGeneratorSolidShape(ISolidShape& solidShape, double area, double perim
 TEST_CASE("CCircle")
 {
 	CCircle circle(CPoint(0, 0), 2, 1, 1);
-	testsGeneratorSolidShape(circle, M_PI * 4, 2 * M_PI * 2, "Circle(Point(0.000000; 0.000000), 2.000000)", 1);
+	testsGeneratorSolidShape(circle, M_PI * 4, 2 * M_PI * 2, "Circle(Point(0.000000; 0.000000); 2.000000; 1; 1)", 1);
 	SECTION("GetFillColor should returns fill color")
 	{
 		REQUIRE(circle.GetFillColor() == 1);

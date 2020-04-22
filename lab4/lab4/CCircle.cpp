@@ -23,5 +23,8 @@ double CCircle::GetPerimeter()
 
 string CCircle::ToString()
 {
-	return "Circle(" + m_center.ToString() + ", " + to_string(m_radius) + ")";
+	return "Circle(" + m_center.ToString() + "; " 
+		+ to_string(m_radius) + "; " 
+		+ to_string(m_outlineColor) + "; " 
+		+ to_string(m_fillColor) + ")";
 }

@@ -2,6 +2,8 @@
 #include "CLineSegment.h"
 #include "CUtils.h"
 
+using namespace std;
+
 CLineSegment::CLineSegment(CPoint start, CPoint end, uint32_t outlineColor)
 {
 	m_startPoint = start;
@@ -19,9 +21,11 @@ double CLineSegment::GetPerimeter()
 	return CUtils::GetDistance(m_startPoint, m_endPoint);
 }
 
-std::string CLineSegment::ToString()
+string CLineSegment::ToString()
 {
-	return "LineSegment(" + m_startPoint.ToString() + "; " + m_endPoint.ToString() + ")";
+	return "LineSegment(" + m_startPoint.ToString() + "; " 
+		+ m_endPoint.ToString() + "; " 
+		+ to_string(m_outlineColor) + ")";
 }
 
 uint32_t CLineSegment::GetOutlineColor()
