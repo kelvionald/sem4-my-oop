@@ -4,6 +4,9 @@
 #include <lab4\lab4\CPoint.h>
 #include <lab4\lab4\CUtils.h>
 #include <lab4\lab4\CLineSegment.h>
+#include <lab4\lab4\CCircle.h>
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 using namespace std;
 
@@ -79,5 +82,45 @@ TEST_CASE("CLineSegment")
 	{
 		lineSegment.SetEndPoint(newPoint);
 		REQUIRE(lineSegment.GetEndPoint() == newPoint);
+	}
+}
+
+void testsGeneratorSolidShape(ISolidShape& solidShape, double area, double perimeter, string str, uint32_t outlineColor)
+{
+	SECTION("GetArea should returns area")
+	{
+		REQUIRE(solidShape.GetArea() == area);
+	}
+	SECTION("GetPerimeter should returns perimeter")
+	{
+		REQUIRE(solidShape.GetPerimeter() == perimeter);
+	}
+	SECTION("ToString should returns string value")
+	{
+		REQUIRE(solidShape.ToString() == str);
+	}
+	SECTION("GetOutlineColor should returns outline color")
+	{
+		REQUIRE(solidShape.GetOutlineColor() == outlineColor);
+	}
+	SECTION("SetOutlineColor should set outline color")
+	{
+		solidShape.SetOutlineColor(2);
+		REQUIRE(solidShape.GetOutlineColor() == 2);
+	}
+}
+
+TEST_CASE("CCircle")
+{
+	CCircle circle(CPoint(0, 0), 2, 1, 1);
+	testsGeneratorSolidShape(circle, M_PI * 4, 2 * M_PI * 2, "Circle(Point(0.000000; 0.000000), 2.000000)", 1);
+	SECTION("GetFillColor should returns fill color")
+	{
+		REQUIRE(circle.GetFillColor() == 1);
+	}
+	SECTION("SetFillColor should set fill color")
+	{
+		circle.SetFillColor(2);
+		REQUIRE(circle.GetFillColor() == 2);
 	}
 }

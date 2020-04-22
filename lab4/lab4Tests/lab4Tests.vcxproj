@@ -155,18 +155,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\lab4\CCircle.cpp" />
     <ClCompile Include="..\lab4\CLineSegment.cpp" />
     <ClCompile Include="..\lab4\CPoint.cpp" />
     <ClCompile Include="..\lab4\CUtils.cpp" />
+    <ClCompile Include="..\lab4\IShape.cpp" />
+    <ClCompile Include="..\lab4\SolidShape.cpp" />
     <ClCompile Include="main.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="tests.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\lab4\CCircle.h" />
     <ClInclude Include="..\lab4\CLineSegment.h" />
     <ClInclude Include="..\lab4\CPoint.h" />
     <ClInclude Include="..\lab4\CUtils.h" />
+    <ClInclude Include="..\lab4\IShape.h" />
+    <ClInclude Include="..\lab4\ISolidShape.h" />
+    <ClInclude Include="..\lab4\SolidShape.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
