@@ -9,6 +9,8 @@ public:
 	virtual double GetArea() override;
 	virtual double GetPerimeter() override;
 	virtual std::string ToString() override;
+	double GetRadius();
+	CPoint GetCenter();
 
 private:
 	CPoint m_center;

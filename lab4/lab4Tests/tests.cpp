@@ -5,6 +5,7 @@
 #include <lab4\lab4\CUtils.h>
 #include <lab4\lab4\CLineSegment.h>
 #include <lab4\lab4\CCircle.h>
+#include <lab4\lab4\CTriangle.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
 
@@ -85,7 +86,7 @@ TEST_CASE("CLineSegment")
 	}
 }
 
-void testsGeneratorSolidShape(ISolidShape& solidShape, double area, double perimeter, string str, uint32_t outlineColor)
+void testsGeneratorSolidShape(ISolidShape& solidShape, double area, double perimeter, string str, uint32_t outlineColor, uint32_t fillColor)
 {
 	SECTION("GetArea should returns area")
 	{
@@ -108,19 +109,52 @@ void testsGeneratorSolidShape(ISolidShape& solidShape, double area, double perim
 		solidShape.SetOutlineColor(2);
 		REQUIRE(solidShape.GetOutlineColor() == 2);
 	}
+	SECTION("GetFillColor should returns fill color")
+	{
+		REQUIRE(solidShape.GetFillColor() == fillColor);
+	}
+	SECTION("SetFillColor should set fill color")
+	{
+		solidShape.SetFillColor(2);
+		REQUIRE(solidShape.GetFillColor() == 2);
+	}
 }
 
 TEST_CASE("CCircle")
 {
-	CCircle circle(CPoint(0, 0), 2, 1, 1);
-	testsGeneratorSolidShape(circle, M_PI * 4, 2 * M_PI * 2, "Circle(Point(0.000000; 0.000000); 2.000000; 1; 1)", 1);
-	SECTION("GetFillColor should returns fill color")
+	CPoint center = CPoint(0, 0);
+	CCircle circle(center, 2, 1, 1);
+	string expectedStr = "Circle(Point(0.000000; 0.000000); 2.000000; 1; 1)";
+	testsGeneratorSolidShape(circle, M_PI * 4, 2 * M_PI * 2, expectedStr, 1, 1);
+	SECTION("GetCenter should returns center")
 	{
-		REQUIRE(circle.GetFillColor() == 1);
+		REQUIRE(circle.GetCenter() == center);
 	}
-	SECTION("SetFillColor should set fill color")
+	SECTION("GetRadius should returns radius")
 	{
-		circle.SetFillColor(2);
-		REQUIRE(circle.GetFillColor() == 2);
+		REQUIRE(circle.GetRadius() == 2);
+	}
+}
+
+TEST_CASE("CTriangle")
+{
+	CPoint a(0, 0);
+	CPoint b(5, 0);
+	CPoint c(0, 4);
+	CTriangle triangle(a, b, c, 1, 1);
+	string expectedStr = "Triangle(Point(0.000000; 0.000000); Point(5.000000; 0.000000); Point(0.000000; 4.000000); 1; 1)";
+	double perimeter = 4 + 5 + CUtils::GetDistance(b, c);
+	testsGeneratorSolidShape(triangle, 10, perimeter, expectedStr, 1, 1);
+	SECTION("GetVertex1 should returns vertex A")
+	{
+		REQUIRE(triangle.GetVertex1() == a);
+	}
+	SECTION("GetVertex1 should returns vertex B")
+	{
+		REQUIRE(triangle.GetVertex2() == b);
+	}
+	SECTION("GetVertex1 should returns vertex C")
+	{
+		REQUIRE(triangle.GetVertex3() == c);
 	}
 }

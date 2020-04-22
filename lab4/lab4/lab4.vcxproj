@@ -150,6 +150,7 @@
     <ClCompile Include="CCircle.cpp" />
     <ClCompile Include="CLineSegment.cpp" />
     <ClCompile Include="CPoint.cpp" />
+    <ClCompile Include="CTriangle.cpp" />
     <ClCompile Include="CUtils.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SolidShape.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="CCircle.h" />
     <ClInclude Include="CLineSegment.h" />
     <ClInclude Include="CPoint.h" />
+    <ClInclude Include="CTriangle.h" />
     <ClInclude Include="CUtils.h" />
     <ClInclude Include="IShape.h" />
     <ClInclude Include="ISolidShape.h" />

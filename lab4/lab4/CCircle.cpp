@@ -28,3 +28,13 @@ string CCircle::ToString()
 		+ to_string(m_outlineColor) + "; " 
 		+ to_string(m_fillColor) + ")";
 }
+
+double CCircle::GetRadius()
+{
+	return m_radius;
+}
+
+CPoint CCircle::GetCenter()
+{
+	return m_center;
+}
