@@ -243,4 +243,23 @@ TEST_CASE("CComplex")
 			REQUIRE(1 == c);
 		}
 	}
+	SECTION("operator !=")
+	{
+		SECTION("complex != complex")
+		{
+			REQUIRE(!(a != a));
+			REQUIRE(a != b);
+		}
+		CComplex c(1, 0);
+		SECTION("complex != real")
+		{
+			REQUIRE(a != 1);
+			REQUIRE(!(c != 1));
+		}
+		SECTION("real != complex")
+		{
+			REQUIRE(1 != a);
+			REQUIRE(!(1 != c));
+		}
+	}
 }
