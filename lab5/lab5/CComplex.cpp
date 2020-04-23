@@ -90,7 +90,7 @@ CComplex operator-(const double a, const CComplex b)
 
 CComplex operator*(const double a, const CComplex b)
 {
-	return CComplex(CComplex(a) * b);
+	return CComplex(a) * b;
 }
 
 CComplex operator/(const double a, const CComplex b)

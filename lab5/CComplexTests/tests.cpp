@@ -107,6 +107,12 @@ TEST_CASE("CComplex")
 			REQUIRE(e.Re() == 2);
 			REQUIRE(e.Im() == 2);
 		}
+		SECTION("real * complex")
+		{
+			CComplex e = 2 * a;
+			REQUIRE(e.Re() == 4);
+			REQUIRE(e.Im() == 4);
+		}
 	}
 	SECTION("binary operator /")
 	{
