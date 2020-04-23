@@ -45,3 +45,13 @@ double CComplex::GetArgument() const
 		}
 	}	
 }
+
+CComplex CComplex::operator+(const CComplex& a) const
+{
+	return CComplex(m_real + a.Re(), m_image + a.Im());
+}
+
+CComplex operator+(double a, CComplex b)
+{
+	return CComplex(b.Re() + a, b.Im());
+}

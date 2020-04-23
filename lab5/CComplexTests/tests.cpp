@@ -43,4 +43,27 @@ TEST_CASE("CComplex")
 			REQUIRE(complex.GetArgument() == atan(-2));
 		}
 	}
+	SECTION("operator +")
+	{
+		CComplex a(2, 2);
+		CComplex b(1, 1);
+		SECTION("2 complex sum")
+		{
+			CComplex c = a + b;
+			REQUIRE(c.Re() == 3);
+			REQUIRE(c.Im() == 3);
+		}
+		SECTION("complex + real")
+		{
+			CComplex d = a + 1;
+			REQUIRE(d.Re() == 3);
+			REQUIRE(d.Im() == 2);
+		}
+		SECTION("real + complex")
+		{
+			CComplex e = 1 + a;
+			REQUIRE(e.Re() == 3);
+			REQUIRE(e.Im() == 2);
+		}
+	}
 }

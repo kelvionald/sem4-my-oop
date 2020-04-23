@@ -8,8 +8,11 @@ public:
 	double Im() const;
 	double GetMagnitude() const;
 	double GetArgument() const;
+	CComplex operator+(const CComplex& a) const;
 
 private:
 	double m_real;
 	double m_image;
 };
+
+CComplex operator+(double a, CComplex b);
