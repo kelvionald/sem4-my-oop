@@ -145,4 +145,10 @@ TEST_CASE("CComplex")
 		REQUIRE(c.Re() == 2);
 		REQUIRE(c.Im() == 2);
 	}
+	SECTION("unary operator -")
+	{
+		CComplex c = -a;
+		REQUIRE(c.Re() == -2);
+		REQUIRE(c.Im() == -2);
+	}
 }
