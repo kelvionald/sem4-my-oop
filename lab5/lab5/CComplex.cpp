@@ -78,6 +78,11 @@ CComplex CComplex::operator/(const CComplex& a) const
 	return CComplex(real / denominator, image / denominator);
 }
 
+CComplex CComplex::operator+() const
+{
+	return CComplex(m_real, m_image);
+}
+
 CComplex operator+(const double a, const CComplex b)
 {
 	return CComplex(b.Re() + a, b.Im());

@@ -139,4 +139,10 @@ TEST_CASE("CComplex")
 			REQUIRE_THROWS(a / 0);
 		}
 	}
+	SECTION("unary operator +")
+	{
+		CComplex c = +a;
+		REQUIRE(c.Re() == 2);
+		REQUIRE(c.Im() == 2);
+	}
 }
