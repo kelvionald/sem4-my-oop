@@ -5,7 +5,7 @@ using namespace std;
 
 void CheckParamsCount(string params, int requireCount)
 {
-	if (CUtils::Split(params, " ").size() != requireCount)
+	if (CUtils::Split(params).size() != requireCount)
 	{
 		throw exception("unexpected params count");
 	}

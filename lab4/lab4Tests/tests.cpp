@@ -45,14 +45,21 @@ TEST_CASE("CUtils")
 		SECTION("with end space")
 		{
 			CPoint point(1, 2);
-			auto arr = CUtils::Split("1 2 3 4 ", " ");
+			auto arr = CUtils::Split("1 2 3 4 ");
 			REQUIRE(arr.size() == 4);
 			REQUIRE(arr == vector<string>{ "1", "2", "3", "4" });
 		}
 		SECTION("without end space")
 		{
 			CPoint point(1, 2);
-			auto arr = CUtils::Split("1 2 3 4", " ");
+			auto arr = CUtils::Split("1 2 3 4");
+			REQUIRE(arr.size() == 4);
+			REQUIRE(arr == vector<string>{ "1", "2", "3", "4" });
+		}
+		SECTION("few spaces")
+		{
+			CPoint point(1, 2);
+			auto arr = CUtils::Split("1 2 3  4   ");
 			REQUIRE(arr.size() == 4);
 			REQUIRE(arr == vector<string>{ "1", "2", "3", "4" });
 		}
