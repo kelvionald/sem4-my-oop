@@ -23,9 +23,13 @@ double CLineSegment::GetPerimeter()
 
 string CLineSegment::ToString()
 {
-	return "LineSegment(" + m_startPoint.ToString() + "; " 
+	return "LineSegment("
+		+ m_startPoint.ToString() + "; " 
 		+ m_endPoint.ToString() + "; " 
-		+ to_string(m_outlineColor) + ")";
+		+ "outlineColor:" + to_string(m_outlineColor) + "; "
+		+ "area:" + to_string(GetArea()) + "; "
+		+ "perimeter:" + to_string(GetPerimeter())
+		+ ")";
 }
 
 uint32_t CLineSegment::GetOutlineColor()

@@ -28,8 +28,10 @@ std::string CTriangle::ToString()
 		+ m_a.ToString() + "; "
 		+ m_b.ToString() + "; "
 		+ m_c.ToString() + "; "
-		+ to_string(m_outlineColor) + "; "
-		+ to_string(m_fillColor)
+		+ "outlineColor:" + to_string(m_outlineColor) + "; "
+		+ "fillColor:" + to_string(m_fillColor) + "; "
+		+ "area:" + to_string(GetArea()) + "; "
+		+ "perimeter:" + to_string(GetPerimeter())
 		+ ")";
 }
 

@@ -25,10 +25,12 @@ string CRectangle::ToString()
 {
 	return "Rectangle("
 		+ m_leftTop.ToString() + "; "
-		+ to_string(m_width) + "; "
-		+ to_string(m_height) + "; "
-		+ to_string(m_outlineColor) + "; "
-		+ to_string(m_fillColor)
+		+ "width:" + to_string(m_width) + "; "
+		+ "height:" + to_string(m_height) + "; "
+		+ "outlineColor:" + to_string(m_outlineColor) + "; "
+		+ "fillColor:" + to_string(m_fillColor) + "; "
+		+ "area:" + to_string(GetArea()) + "; "
+		+ "perimeter:" + to_string(GetPerimeter())
 		+ ")";
 }
 
