@@ -51,7 +51,17 @@ CComplex CComplex::operator+(const CComplex& a) const
 	return CComplex(m_real + a.Re(), m_image + a.Im());
 }
 
-CComplex operator+(double a, CComplex b)
+CComplex CComplex::operator-(const CComplex& a) const
+{
+	return CComplex(m_real - a.Re(), m_image - a.Im());
+}
+
+CComplex operator+(const double a, const CComplex b)
 {
 	return CComplex(b.Re() + a, b.Im());
+}
+
+CComplex operator-(const double a, const CComplex b)
+{
+	return CComplex(a - b.Re(), - b.Im());
 }

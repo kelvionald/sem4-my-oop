@@ -9,10 +9,12 @@ public:
 	double GetMagnitude() const;
 	double GetArgument() const;
 	CComplex operator+(const CComplex& a) const;
+	CComplex operator-(const CComplex& a) const;
 
 private:
 	double m_real;
 	double m_image;
 };
 
-CComplex operator+(double a, CComplex b);
+CComplex operator+(const double a, const CComplex b);
+CComplex operator-(const double a, const CComplex b);
