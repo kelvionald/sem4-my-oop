@@ -168,4 +168,21 @@ TEST_CASE("CComplex")
 			REQUIRE(c.Im() == 2);
 		}
 	}
+	SECTION("operator -=")
+	{
+		SECTION("complex -= complex")
+		{
+			CComplex c = a;
+			c -= b;
+			REQUIRE(c.Re() == 1);
+			REQUIRE(c.Im() == 1);
+		}
+		SECTION("complex -= real")
+		{
+			CComplex c = a;
+			c -= 1;
+			REQUIRE(c.Re() == 1);
+			REQUIRE(c.Im() == 2);
+		}
+	}
 }
