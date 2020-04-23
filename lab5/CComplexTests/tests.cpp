@@ -134,7 +134,7 @@ TEST_CASE("CComplex")
 			REQUIRE(e.Re() == 0.25);
 			REQUIRE(e.Im() == -0.25);
 		}
-		SECTION("complex / real")
+		SECTION("complex / 0")
 		{
 			REQUIRE_THROWS(a / 0);
 		}
@@ -200,6 +200,28 @@ TEST_CASE("CComplex")
 			c *= 2;
 			REQUIRE(c.Re() == 4);
 			REQUIRE(c.Im() == 4);
+		}
+	}
+	SECTION("operator /=")
+	{
+		SECTION("complex /= complex")
+		{
+			CComplex c = a;
+			c /= b;
+			REQUIRE(c.Re() == 2);
+			REQUIRE(c.Im() == 0);
+		}
+		SECTION("complex /= real")
+		{
+			CComplex c = a;
+			c /= 2;
+			REQUIRE(c.Re() == 1);
+			REQUIRE(c.Im() == 1);
+		}
+		SECTION("complex /= 0")
+		{
+			CComplex c = a;
+			REQUIRE_THROWS(c /= 0);
 		}
 	}
 }

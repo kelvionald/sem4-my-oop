@@ -110,6 +110,14 @@ CComplex CComplex::operator*=(const CComplex& a)
 	return *this;
 }
 
+CComplex CComplex::operator/=(const CComplex& a)
+{
+	CComplex b = *this / a;
+	m_real = b.Re();
+	m_image = b.Im();
+	return *this;
+}
+
 CComplex operator+(const double a, const CComplex b)
 {
 	return CComplex(b.Re() + a, b.Im());
