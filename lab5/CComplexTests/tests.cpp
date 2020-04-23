@@ -134,5 +134,9 @@ TEST_CASE("CComplex")
 			REQUIRE(e.Re() == 0.25);
 			REQUIRE(e.Im() == -0.25);
 		}
+		SECTION("complex / real")
+		{
+			REQUIRE_THROWS(a / 0);
+		}
 	}
 }
