@@ -25,7 +25,7 @@ double CPoint::GetY()
 
 string CPoint::ToString()
 {
-	return "Point(" + to_string(m_x) + "; " + to_string(m_y) + ")";
+	return "Point(x:" + to_string(m_x) + "; y:" + to_string(m_y) + ")";
 }
 
 bool operator==(const CPoint& a, const CPoint& b)

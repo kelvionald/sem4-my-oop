@@ -28,7 +28,7 @@ TEST_CASE("CPoint")
 	}
 	SECTION("GetString should returns y")
 	{
-		REQUIRE(point.ToString() == "Point(1.000000; 2.000000)");
+		REQUIRE(point.ToString() == "Point(x:1.000000; y:2.000000)");
 	}
 }
 
@@ -101,7 +101,7 @@ TEST_CASE("CLineSegment")
 	}
 	SECTION("ToString should returns string value")
 	{
-		string expected = "LineSegment(Point(0.000000; 0.000000); Point(1.000000; 1.000000); 0)";
+		string expected = "LineSegment(Point(x:0.000000; y:0.000000); Point(x:1.000000; y:1.000000); 0)";
 		REQUIRE(lineSegment.ToString() == expected);
 	}
 	SECTION("GetOutlineColor should returns outline color")
@@ -146,7 +146,7 @@ TEST_CASE("CCircle")
 {
 	CPoint center = CPoint(0, 0);
 	CCircle circle(center, 2, 1, 1);
-	string expectedStr = "Circle(Point(0.000000; 0.000000); 2.000000; 1; 1)";
+	string expectedStr = "Circle(Point(x:0.000000; y:0.000000); 2.000000; 1; 1)";
 	testsGeneratorSolidShape(circle, M_PI * 4, 2 * M_PI * 2, expectedStr, 1, 1);
 	SECTION("GetCenter should returns center")
 	{
@@ -164,7 +164,7 @@ TEST_CASE("CTriangle")
 	CPoint b(5, 0);
 	CPoint c(0, 4);
 	CTriangle triangle(a, b, c, 1, 1);
-	string expectedStr = "Triangle(Point(0.000000; 0.000000); Point(5.000000; 0.000000); Point(0.000000; 4.000000); 1; 1)";
+	string expectedStr = "Triangle(Point(x:0.000000; y:0.000000); Point(x:5.000000; y:0.000000); Point(x:0.000000; y:4.000000); 1; 1)";
 	double perimeter = 4 + 5 + CUtils::GetDistance(b, c);
 	testsGeneratorSolidShape(triangle, 10, perimeter, expectedStr, 1, 1);
 	SECTION("GetVertex1 should returns vertex A")
@@ -185,7 +185,7 @@ TEST_CASE("CRectangle")
 {
 	CPoint leftTop(0, 0);
 	CRectangle rectangle(leftTop, 10, 8, 1, 1);
-	string expectedStr = "Rectangle(Point(0.000000; 0.000000); 10.000000; 8.000000; 1; 1)";
+	string expectedStr = "Rectangle(Point(x:0.000000; y:0.000000); 10.000000; 8.000000; 1; 1)";
 	testsGeneratorSolidShape(rectangle, 80, 36, expectedStr, 1, 1);
 	SECTION("GetLeftTop should returns left top point")
 	{
