@@ -52,6 +52,15 @@ void Program::ReadShapes(istream& input)
 	}
 }
 
+void ReadColor(stringstream& ss, string& color)
+{
+	ss >> color;
+	if (!CUtils::IsValidHexColor(color))
+	{
+		throw exception("non color value");
+	}
+}
+
 CLineSegment* Program::ReadLineSegment(stringstream& ss)
 {
 	double ax, ay, bx, by;
@@ -60,11 +69,7 @@ CLineSegment* Program::ReadLineSegment(stringstream& ss)
 	{
 		throw exception("non double value");
 	}
-	ss >> outlineColor;
-	if (!CUtils::IsValidHexColor(outlineColor))
-	{
-		throw exception("non color value");
-	}
+	ReadColor(ss, outlineColor);
 	return new CLineSegment(CPoint(ax, ay), CPoint(bx, by), CUtils::ParseColor(outlineColor));
 }
 
@@ -76,13 +81,9 @@ CTriangle* Program::ReadTriangle(stringstream& ss)
 	{
 		throw exception("non double value");
 	}
-	ss >> outlineColor;
-	ss >> fillColor;
-	if (!CUtils::IsValidHexColor(outlineColor) || !CUtils::IsValidHexColor(fillColor))
-	{
-		throw exception("non color value");
-	}
-	return new CTriangle(CPoint(ax, ay), CPoint(bx, by), CPoint(cx, cy), 
+	ReadColor(ss, outlineColor);
+	ReadColor(ss, fillColor);
+	return new CTriangle(CPoint(ax, ay), CPoint(bx, by), CPoint(cx, cy),
 		CUtils::ParseColor(outlineColor),
 		CUtils::ParseColor(fillColor));
 }
@@ -95,12 +96,8 @@ CRectangle* Program::ReadRectangle(stringstream& ss)
 	{
 		throw exception("non double value");
 	}
-	ss >> outlineColor;
-	ss >> fillColor;
-	if (!CUtils::IsValidHexColor(outlineColor) || !CUtils::IsValidHexColor(fillColor))
-	{
-		throw exception("non color value");
-	}
+	ReadColor(ss, outlineColor);
+	ReadColor(ss, fillColor);
 	return new CRectangle(CPoint(ax, ay), width, height,
 		CUtils::ParseColor(outlineColor),
 		CUtils::ParseColor(fillColor));
@@ -114,12 +111,8 @@ CCircle* Program::ReadCircle(stringstream& ss)
 	{
 		throw exception("non double value");
 	}
-	ss >> outlineColor;
-	ss >> fillColor;
-	if (!CUtils::IsValidHexColor(outlineColor) || !CUtils::IsValidHexColor(fillColor))
-	{
-		throw exception("non color value");
-	}
+	ReadColor(ss, outlineColor);
+	ReadColor(ss, fillColor);
 	return new CCircle(CPoint(ax, ay), radius,
 		CUtils::ParseColor(outlineColor),
 		CUtils::ParseColor(fillColor));
