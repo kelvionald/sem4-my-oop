@@ -1,5 +1,6 @@
 #include "Program.h"
 #include "CUtils.h"
+#include <algorithm>
 
 using namespace std;
 
@@ -122,6 +123,46 @@ CCircle* Program::ReadCircle(stringstream& ss)
 	return new CCircle(CPoint(ax, ay), radius,
 		CUtils::ParseColor(outlineColor),
 		CUtils::ParseColor(fillColor));
+}
+
+IShape* Program::FindWithMaxArea()
+{
+	if (m_shapes.size())
+	{
+		double maxArea = m_shapes[0]->GetArea();
+		int maxAreaIndex = 0;
+		for (int i = 1; i < m_shapes.size(); i++)
+		{
+			double tempMaxArea = m_shapes[i]->GetArea();
+			if (tempMaxArea > maxArea)
+			{
+				maxArea = tempMaxArea;
+				maxAreaIndex = i;
+			}
+		}
+		return m_shapes[maxAreaIndex];
+	}
+	return nullptr;
+}
+
+IShape* Program::FindWithMinPerimeter()
+{
+	if (m_shapes.size())
+	{
+		double minPerimeter = m_shapes[0]->GetPerimeter();
+		int minPerimeterIndex = 0;
+		for (int i = 1; i < m_shapes.size(); i++)
+		{
+			double tempMinPerimeter = m_shapes[i]->GetPerimeter();
+			if (tempMinPerimeter < minPerimeter)
+			{
+				minPerimeter = tempMinPerimeter;
+				minPerimeterIndex = i;
+			}
+		}
+		return m_shapes[minPerimeterIndex];
+	}
+	return nullptr;
 }
 
 IShape* Program::GetShapeByIndex(int index)

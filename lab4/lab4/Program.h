@@ -16,8 +16,8 @@ public:
 	CTriangle* ReadTriangle(std::stringstream& ss);
 	CRectangle* ReadRectangle(std::stringstream& ss);
 	CCircle* ReadCircle(std::stringstream& ss);
-	//IShape* FindWithMaxArea();
-	//IShape* FindWithMinPerimeter();
+	IShape* FindWithMaxArea();
+	IShape* FindWithMinPerimeter();
 	IShape* GetShapeByIndex(int index);
 
 private:

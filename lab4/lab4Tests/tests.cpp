@@ -264,4 +264,30 @@ TEST_CASE("Program")
 		REQUIRE(lineSegment->GetOutlineColor() == 16777215);
 		REQUIRE(lineSegment->GetFillColor() == 0);
 	}
+	SECTION("FindWithMaxArea should returns shape with max area")
+	{
+		Program program;
+		istringstream input("rectangle 1.0 1.0 2.0 2.0 ffffff 000000\n"
+							"rectangle 1.0 1.0 2.0 3.0 ffffff 000000");
+		program.ReadShapes(input);
+		SECTION("lineSegment reading")
+		{
+			IShape* bigShape = program.FindWithMaxArea();
+			CRectangle* rectangle = dynamic_cast<CRectangle*>(bigShape);
+			REQUIRE(rectangle->GetHeight() == 3);
+		}
+	}
+	SECTION("FindWithMinPerimeter should returns shape with min perimeter")
+	{
+		Program program;
+		istringstream input("rectangle 1.0 1.0 2.0 2.0 ffffff 000000\n"
+							"rectangle 1.0 1.0 2.0 3.0 ffffff 000000");
+		program.ReadShapes(input);
+		SECTION("lineSegment reading")
+		{
+			IShape* bigShape = program.FindWithMinPerimeter();
+			CRectangle* rectangle = dynamic_cast<CRectangle*>(bigShape);
+			REQUIRE(rectangle->GetHeight() == 2);
+		}
+	}
 }
