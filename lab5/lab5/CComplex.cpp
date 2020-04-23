@@ -1,6 +1,9 @@
 #include "CComplex.h"
 #define _USE_MATH_DEFINES
 #include <cmath>
+#include <exception>
+
+using namespace std;
 
 CComplex::CComplex(double real, double image)
 {
@@ -63,6 +66,18 @@ CComplex CComplex::operator*(const CComplex& a) const
 	return CComplex(real, image);
 }
 
+CComplex CComplex::operator/(const CComplex& a) const
+{
+	double denominator = pow(a.Re(), 2) + pow(a.Im(), 2);
+	if (denominator == 0)
+	{
+		throw exception("division by zero");
+	}
+	double real = m_real * a.Re() + m_image * a.Im();
+	double image = m_image * a.Re() - m_real * a.Im();
+	return CComplex(real / denominator, image / denominator);
+}
+
 CComplex operator+(const double a, const CComplex b)
 {
 	return CComplex(b.Re() + a, b.Im());
@@ -76,4 +91,9 @@ CComplex operator-(const double a, const CComplex b)
 CComplex operator*(const double a, const CComplex b)
 {
 	return CComplex(CComplex(a) * b);
+}
+
+CComplex operator/(const double a, const CComplex b)
+{
+	return CComplex(a) / b;
 }
