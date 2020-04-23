@@ -2,6 +2,7 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
 #include <exception>
+#include <cfloat>
 
 using namespace std;
 
@@ -118,6 +119,12 @@ CComplex CComplex::operator/=(const CComplex& a)
 	return *this;
 }
 
+bool CComplex::operator==(const CComplex& a) const
+{
+	CComplex delta = *this - a;
+	return fabs(delta.Re()) < DBL_EPSILON && fabs(delta.Im()) < DBL_EPSILON;
+}
+
 CComplex operator+(const double a, const CComplex b)
 {
 	return CComplex(b.Re() + a, b.Im());
@@ -136,4 +143,9 @@ CComplex operator*(const double a, const CComplex b)
 CComplex operator/(const double a, const CComplex b)
 {
 	return CComplex(a) / b;
+}
+
+bool operator==(const double a, const CComplex b)
+{
+	return CComplex(a) == b;
 }

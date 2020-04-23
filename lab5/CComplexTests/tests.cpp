@@ -87,7 +87,7 @@ TEST_CASE("CComplex")
 			REQUIRE(e.Im() == -2);
 		}
 	}
-	SECTION("binary operator *")
+	SECTION("operator *")
 	{
 		SECTION("2 complex multiplication")
 		{
@@ -114,7 +114,7 @@ TEST_CASE("CComplex")
 			REQUIRE(e.Im() == 4);
 		}
 	}
-	SECTION("binary operator /")
+	SECTION("operator /")
 	{
 		SECTION("2 complex division")
 		{
@@ -222,6 +222,25 @@ TEST_CASE("CComplex")
 		{
 			CComplex c = a;
 			REQUIRE_THROWS(c /= 0);
+		}
+	}
+	SECTION("operator ==")
+	{
+		SECTION("complex == complex")
+		{
+			REQUIRE(a == a);
+			REQUIRE(!(a == b));
+		}
+		CComplex c(1, 0);
+		SECTION("complex == real")
+		{
+			REQUIRE(!(a == 1));
+			REQUIRE(c == 1);
+		}
+		SECTION("real == complex")
+		{
+			REQUIRE(!(1 == a));
+			REQUIRE(1 == c);
 		}
 	}
 }
