@@ -87,4 +87,25 @@ TEST_CASE("CComplex")
 			REQUIRE(e.Im() == -2);
 		}
 	}
+	SECTION("binary operator *")
+	{
+		SECTION("2 complex multiplication")
+		{
+			CComplex c = a * b;
+			REQUIRE(c.Re() == 0);
+			REQUIRE(c.Im() == 4);
+		}
+		SECTION("complex - real")
+		{
+			CComplex d = a * 1;
+			REQUIRE(d.Re() == 2);
+			REQUIRE(d.Im() == 2);
+		}
+		SECTION("real - complex")
+		{
+			CComplex e = 1 * a;
+			REQUIRE(e.Re() == 2);
+			REQUIRE(e.Im() == 2);
+		}
+	}
 }
