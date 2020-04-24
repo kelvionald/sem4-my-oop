@@ -1,8 +1,8 @@
 #include "Program.h"
-#include "CUtils.h"
-#include "CParamsCountException.h"
 #include "CNonColorException.h"
 #include "CNonDoubleException.h"
+#include "CParamsCountException.h"
+#include "CUtils.h"
 #include <algorithm>
 
 using namespace std;
@@ -64,46 +64,55 @@ void ReadColor(stringstream& ss, string& color)
 	}
 }
 
-CLineSegment* Program::ReadLineSegment(stringstream& ss)
+void ReadDouble(double& val, stringstream& ss)
 {
-	double ax, ay, bx, by;
-	string outlineColor;
-	if (!(ss >> ax) || !(ss >> ay) || !(ss >> bx) || !(ss >> by))
+	if (!(ss >> val))
 	{
 		throw CNonDoubleException();
 	}
+}
+
+void ReadPoint(CPoint& point, stringstream& ss)
+{
+	double x, y;
+	ReadDouble(x, ss);
+	ReadDouble(y, ss);
+	point = CPoint(x, y);
+}
+
+CLineSegment* Program::ReadLineSegment(stringstream& ss)
+{
+	CPoint a, b;
+	string outlineColor;
+	ReadPoint(a, ss);
+	ReadPoint(b, ss);
 	ReadColor(ss, outlineColor);
-	return new CLineSegment(CPoint(ax, ay), CPoint(bx, by), CUtils::ParseColor(outlineColor));
+	return new CLineSegment(a, b, CUtils::ParseColor(outlineColor));
 }
 
 CTriangle* Program::ReadTriangle(stringstream& ss)
 {
-	double ax, ay, bx, by, cx, cy;
+	CPoint a, b, c;
 	string outlineColor, fillColor;
-	if (!(ss >> ax) || !(ss >> ay) || !(ss >> bx) || !(ss >> by) || !(ss >> cx) || !(ss >> cy))
-	{
-		throw CNonDoubleException();
-	}
+	ReadPoint(a, ss);
+	ReadPoint(b, ss);
+	ReadPoint(c, ss);
 	ReadColor(ss, outlineColor);
 	ReadColor(ss, fillColor);
-	return new CTriangle(CPoint(ax, ay), CPoint(bx, by), CPoint(cx, cy),
-		CUtils::ParseColor(outlineColor),
-		CUtils::ParseColor(fillColor));
+	return new CTriangle(a, b, c, CUtils::ParseColor(outlineColor), CUtils::ParseColor(fillColor));
 }
 
 CRectangle* Program::ReadRectangle(stringstream& ss)
 {
-	double ax, ay, width, height;
+	CPoint a;
+	double width, height;
 	string outlineColor, fillColor;
-	if (!(ss >> ax) || !(ss >> ay) || !(ss >> width) || !(ss >> height))
-	{
-		throw CNonDoubleException();
-	}
+	ReadPoint(a, ss);
+	ReadDouble(width, ss);
+	ReadDouble(height, ss);
 	ReadColor(ss, outlineColor);
 	ReadColor(ss, fillColor);
-	return new CRectangle(CPoint(ax, ay), width, height,
-		CUtils::ParseColor(outlineColor),
-		CUtils::ParseColor(fillColor));
+	return new CRectangle(a, width, height, CUtils::ParseColor(outlineColor), CUtils::ParseColor(fillColor));
 }
 
 CCircle* Program::ReadCircle(stringstream& ss)
