@@ -1,5 +1,8 @@
 #include "Program.h"
 #include "CUtils.h"
+#include "CParamsCountException.h"
+#include "CNonColorException.h"
+#include "CNonDoubleException.h"
 #include <algorithm>
 
 using namespace std;
@@ -8,7 +11,7 @@ void CheckParamsCount(string params, int requireCount)
 {
 	if (CUtils::Split(params).size() != requireCount)
 	{
-		throw exception("unexpected params count");
+		throw CParamsCountException();
 	}
 }
 
@@ -57,7 +60,7 @@ void ReadColor(stringstream& ss, string& color)
 	ss >> color;
 	if (!CUtils::IsValidHexColor(color))
 	{
-		throw exception("non color value");
+		throw CNonColorException();
 	}
 }
 
@@ -67,7 +70,7 @@ CLineSegment* Program::ReadLineSegment(stringstream& ss)
 	string outlineColor;
 	if (!(ss >> ax) || !(ss >> ay) || !(ss >> bx) || !(ss >> by))
 	{
-		throw exception("non double value");
+		throw CNonDoubleException();
 	}
 	ReadColor(ss, outlineColor);
 	return new CLineSegment(CPoint(ax, ay), CPoint(bx, by), CUtils::ParseColor(outlineColor));
@@ -79,7 +82,7 @@ CTriangle* Program::ReadTriangle(stringstream& ss)
 	string outlineColor, fillColor;
 	if (!(ss >> ax) || !(ss >> ay) || !(ss >> bx) || !(ss >> by) || !(ss >> cx) || !(ss >> cy))
 	{
-		throw exception("non double value");
+		throw CNonDoubleException();
 	}
 	ReadColor(ss, outlineColor);
 	ReadColor(ss, fillColor);
@@ -94,7 +97,7 @@ CRectangle* Program::ReadRectangle(stringstream& ss)
 	string outlineColor, fillColor;
 	if (!(ss >> ax) || !(ss >> ay) || !(ss >> width) || !(ss >> height))
 	{
-		throw exception("non double value");
+		throw CNonDoubleException();
 	}
 	ReadColor(ss, outlineColor);
 	ReadColor(ss, fillColor);
@@ -109,7 +112,7 @@ CCircle* Program::ReadCircle(stringstream& ss)
 	string outlineColor, fillColor;
 	if (!(ss >> ax) || !(ss >> ay) || !(ss >> radius))
 	{
-		throw exception("non double value");
+		throw CNonDoubleException();
 	}
 	ReadColor(ss, outlineColor);
 	ReadColor(ss, fillColor);

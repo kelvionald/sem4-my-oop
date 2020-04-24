@@ -165,6 +165,9 @@
   <ItemGroup>
     <ClCompile Include="..\lab4\CCircle.cpp" />
     <ClCompile Include="..\lab4\CLineSegment.cpp" />
+    <ClCompile Include="..\lab4\CNonColorException.cpp" />
+    <ClCompile Include="..\lab4\CNonDoubleException.cpp" />
+    <ClCompile Include="..\lab4\CParamsCountException.cpp" />
     <ClCompile Include="..\lab4\CPoint.cpp" />
     <ClCompile Include="..\lab4\CRectangle.cpp" />
     <ClCompile Include="..\lab4\CTriangle.cpp" />
@@ -180,6 +183,9 @@
   <ItemGroup>
     <ClInclude Include="..\lab4\CCircle.h" />
     <ClInclude Include="..\lab4\CLineSegment.h" />
+    <ClInclude Include="..\lab4\CNonColorException.h" />
+    <ClInclude Include="..\lab4\CNonDoubleException.h" />
+    <ClInclude Include="..\lab4\CParamsCountException.h" />
     <ClInclude Include="..\lab4\CPoint.h" />
     <ClInclude Include="..\lab4\CRectangle.h" />
     <ClInclude Include="..\lab4\CTriangle.h" />
