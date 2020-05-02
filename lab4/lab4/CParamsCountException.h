@@ -3,5 +3,6 @@
 
 class CParamsCountException : public std::exception
 {
+public:
 	char const* what() const;
 };

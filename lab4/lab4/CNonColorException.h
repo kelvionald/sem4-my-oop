@@ -3,5 +3,6 @@
 
 class CNonColorException : public std::exception
 {
-	char const* what() const;
+public:
+	char const* what() const override;
 };
