@@ -185,7 +185,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ProgramTests.cpp" />
-    <ClCompile Include="tests.cpp" />
     <ClCompile Include="TestsGeneratorSolidShape.cpp" />
     <ClCompile Include="TestsGeneratorSolidShape.h" />
   </ItemGroup>
