@@ -9,7 +9,7 @@ using namespace std;
 
 void CheckParamsCount(string params, int requireCount)
 {
-	if (CUtils::Split(params).size() != requireCount)
+	if (Utils::Split(params).size() != requireCount)
 	{
 		throw CParamsCountException();
 	}
@@ -58,7 +58,7 @@ void Program::ReadShapes(istream& input)
 void ReadColor(stringstream& ss, string& color)
 {
 	ss >> color;
-	if (!CUtils::IsValidHexColor(color))
+	if (!Utils::IsValidHexColor(color))
 	{
 		throw CNonColorException();
 	}
@@ -87,7 +87,7 @@ CLineSegment* Program::ReadLineSegment(stringstream& ss)
 	ReadPoint(a, ss);
 	ReadPoint(b, ss);
 	ReadColor(ss, outlineColor);
-	return new CLineSegment(a, b, CUtils::ParseColor(outlineColor));
+	return new CLineSegment(a, b, Utils::ParseColor(outlineColor));
 }
 
 CTriangle* Program::ReadTriangle(stringstream& ss)
@@ -99,7 +99,7 @@ CTriangle* Program::ReadTriangle(stringstream& ss)
 	ReadPoint(c, ss);
 	ReadColor(ss, outlineColor);
 	ReadColor(ss, fillColor);
-	return new CTriangle(a, b, c, CUtils::ParseColor(outlineColor), CUtils::ParseColor(fillColor));
+	return new CTriangle(a, b, c, Utils::ParseColor(outlineColor), Utils::ParseColor(fillColor));
 }
 
 CRectangle* Program::ReadRectangle(stringstream& ss)
@@ -112,7 +112,7 @@ CRectangle* Program::ReadRectangle(stringstream& ss)
 	ReadDouble(height, ss);
 	ReadColor(ss, outlineColor);
 	ReadColor(ss, fillColor);
-	return new CRectangle(a, width, height, CUtils::ParseColor(outlineColor), CUtils::ParseColor(fillColor));
+	return new CRectangle(a, width, height, Utils::ParseColor(outlineColor), Utils::ParseColor(fillColor));
 }
 
 CCircle* Program::ReadCircle(stringstream& ss)
@@ -126,8 +126,8 @@ CCircle* Program::ReadCircle(stringstream& ss)
 	ReadColor(ss, outlineColor);
 	ReadColor(ss, fillColor);
 	return new CCircle(CPoint(ax, ay), radius,
-		CUtils::ParseColor(outlineColor),
-		CUtils::ParseColor(fillColor));
+		Utils::ParseColor(outlineColor),
+		Utils::ParseColor(fillColor));
 }
 
 IShape* Program::FindWithMaxArea()

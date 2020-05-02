@@ -7,7 +7,7 @@
 
 using namespace std;
 
-namespace CUtils
+namespace Utils
 {
 	double GetDistance(const CPoint a, const CPoint b)
 	{

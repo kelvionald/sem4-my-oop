@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-namespace CUtils
+namespace Utils
 {
 	double GetDistance(const CPoint a, const CPoint b);
 	std::vector<std::string> Split(const std::string& input);

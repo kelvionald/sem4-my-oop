@@ -37,7 +37,7 @@ TEST_CASE("CUtils")
 	SECTION("GetDistance should returns distance between two points")
 	{
 		CPoint point(1, 2);
-		double distance = CUtils::GetDistance(CPoint(0, 0), CPoint(1, 1));
+		double distance = Utils::GetDistance(CPoint(0, 0), CPoint(1, 1));
 		REQUIRE(distance == sqrt(2));
 	}
 	SECTION("Split should returns splitted array")
@@ -45,21 +45,21 @@ TEST_CASE("CUtils")
 		SECTION("with end space")
 		{
 			CPoint point(1, 2);
-			auto arr = CUtils::Split("1 2 3 4 ");
+			auto arr = Utils::Split("1 2 3 4 ");
 			REQUIRE(arr.size() == 4);
 			REQUIRE(arr == vector<string>{ "1", "2", "3", "4" });
 		}
 		SECTION("without end space")
 		{
 			CPoint point(1, 2);
-			auto arr = CUtils::Split("1 2 3 4");
+			auto arr = Utils::Split("1 2 3 4");
 			REQUIRE(arr.size() == 4);
 			REQUIRE(arr == vector<string>{ "1", "2", "3", "4" });
 		}
 		SECTION("few spaces")
 		{
 			CPoint point(1, 2);
-			auto arr = CUtils::Split("1 2 3  4   ");
+			auto arr = Utils::Split("1 2 3  4   ");
 			REQUIRE(arr.size() == 4);
 			REQUIRE(arr == vector<string>{ "1", "2", "3", "4" });
 		}
@@ -68,21 +68,21 @@ TEST_CASE("CUtils")
 	{
 		SECTION("length should be 6 symbols")
 		{
-			REQUIRE(!CUtils::IsValidHexColor("00000"));
-			REQUIRE(!CUtils::IsValidHexColor("0000000"));
-			REQUIRE(CUtils::IsValidHexColor("000000"));
+			REQUIRE(!Utils::IsValidHexColor("00000"));
+			REQUIRE(!Utils::IsValidHexColor("0000000"));
+			REQUIRE(Utils::IsValidHexColor("000000"));
 		}
 		SECTION("allows only hex chars")
 		{
-			REQUIRE(CUtils::IsValidHexColor("abcdef"));
-			REQUIRE(CUtils::IsValidHexColor("ABCDEF"));
-			REQUIRE(CUtils::IsValidHexColor("123456"));
-			REQUIRE(!CUtils::IsValidHexColor("12315H"));
+			REQUIRE(Utils::IsValidHexColor("abcdef"));
+			REQUIRE(Utils::IsValidHexColor("ABCDEF"));
+			REQUIRE(Utils::IsValidHexColor("123456"));
+			REQUIRE(!Utils::IsValidHexColor("12315H"));
 		}
 	}
 	SECTION("ParseColor should returns uint color")
 	{
-		REQUIRE(CUtils::ParseColor("ffffff") == 16777215);
+		REQUIRE(Utils::ParseColor("ffffff") == 16777215);
 	}
 }
 
@@ -165,7 +165,7 @@ TEST_CASE("CTriangle")
 	CPoint c(0, 4);
 	CTriangle triangle(a, b, c, 1, 1);
 	string expectedStr = "Triangle(Point(x:0.000000; y:0.000000); Point(x:5.000000; y:0.000000); Point(x:0.000000; y:4.000000); outlineColor:1; fillColor:1; area:10.000000; perimeter:15.403124)";
-	double perimeter = 4 + 5 + CUtils::GetDistance(b, c);
+	double perimeter = 4 + 5 + Utils::GetDistance(b, c);
 	testsGeneratorSolidShape(triangle, 10, perimeter, expectedStr, 1, 1);
 	SECTION("GetVertex1 should returns vertex A")
 	{

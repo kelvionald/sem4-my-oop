@@ -18,7 +18,7 @@ double CLineSegment::GetArea() const
 
 double CLineSegment::GetPerimeter() const
 {
-	return CUtils::GetDistance(m_startPoint, m_endPoint);
+	return Utils::GetDistance(m_startPoint, m_endPoint);
 }
 
 string CLineSegment::ToString() const

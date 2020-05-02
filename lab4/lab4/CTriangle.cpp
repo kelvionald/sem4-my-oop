@@ -19,7 +19,7 @@ double CTriangle::GetArea() const
 
 double CTriangle::GetPerimeter() const
 {
-	return CUtils::GetDistance(m_a, m_b) + CUtils::GetDistance(m_b, m_c) + CUtils::GetDistance(m_c, m_a);
+	return Utils::GetDistance(m_a, m_b) + Utils::GetDistance(m_b, m_c) + Utils::GetDistance(m_c, m_a);
 }
 
 std::string CTriangle::ToString() const
