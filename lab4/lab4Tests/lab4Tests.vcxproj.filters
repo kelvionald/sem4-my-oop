@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Исходные файлы\ClassTests">
+      <UniqueIdentifier>{48c1d05f-5f4d-4085-959b-d5f067714a5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Helpers">
+      <UniqueIdentifier>{0eac8392-7014-4f56-adb5-685a995f5270}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -56,6 +62,33 @@
     </ClCompile>
     <ClCompile Include="..\lab4\CNonDoubleException.cpp">
       <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="CPointTests.cpp">
+      <Filter>Исходные файлы\ClassTests</Filter>
+    </ClCompile>
+    <ClCompile Include="CUtilsTests.cpp">
+      <Filter>Исходные файлы\ClassTests</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgramTests.cpp">
+      <Filter>Исходные файлы\ClassTests</Filter>
+    </ClCompile>
+    <ClCompile Include="CCircleTests.cpp">
+      <Filter>Исходные файлы\ClassTests</Filter>
+    </ClCompile>
+    <ClCompile Include="CLineSegmentTests.cpp">
+      <Filter>Исходные файлы\ClassTests</Filter>
+    </ClCompile>
+    <ClCompile Include="TestsGeneratorSolidShape.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="TestsGeneratorSolidShape.h">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="CTriangleTests.cpp">
+      <Filter>Исходные файлы\ClassTests</Filter>
+    </ClCompile>
+    <ClCompile Include="CRectangleTests.cpp">
+      <Filter>Исходные файлы\ClassTests</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

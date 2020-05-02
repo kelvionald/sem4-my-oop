@@ -175,10 +175,19 @@
     <ClCompile Include="..\lab4\IShape.cpp" />
     <ClCompile Include="..\lab4\Program.cpp" />
     <ClCompile Include="..\lab4\SolidShape.cpp" />
+    <ClCompile Include="CCircleTests.cpp" />
+    <ClCompile Include="CLineSegmentTests.cpp" />
+    <ClCompile Include="CPointTests.cpp" />
+    <ClCompile Include="CRectangleTests.cpp" />
+    <ClCompile Include="CTriangleTests.cpp" />
+    <ClCompile Include="CUtilsTests.cpp" />
     <ClCompile Include="main.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ProgramTests.cpp" />
     <ClCompile Include="tests.cpp" />
+    <ClCompile Include="TestsGeneratorSolidShape.cpp" />
+    <ClCompile Include="TestsGeneratorSolidShape.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lab4\CCircle.h" />
