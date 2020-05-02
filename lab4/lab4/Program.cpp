@@ -134,18 +134,10 @@ IShape* Program::FindWithMaxArea()
 {
 	if (m_shapes.size())
 	{
-		double maxArea = m_shapes[0]->GetArea();
-		int maxAreaIndex = 0;
-		for (int i = 1; i < m_shapes.size(); i++)
-		{
-			double tempMaxArea = m_shapes[i]->GetArea();
-			if (tempMaxArea > maxArea)
-			{
-				maxArea = tempMaxArea;
-				maxAreaIndex = i;
-			}
-		}
-		return m_shapes[maxAreaIndex];
+		auto element = max_element(m_shapes.begin(), m_shapes.end(), [](IShape* a, IShape* b) {
+			return a->GetArea() < b->GetArea();
+		});
+		return *element;
 	}
 	return nullptr;
 }
@@ -154,18 +146,10 @@ IShape* Program::FindWithMinPerimeter()
 {
 	if (m_shapes.size())
 	{
-		double minPerimeter = m_shapes[0]->GetPerimeter();
-		int minPerimeterIndex = 0;
-		for (int i = 1; i < m_shapes.size(); i++)
-		{
-			double tempMinPerimeter = m_shapes[i]->GetPerimeter();
-			if (tempMinPerimeter < minPerimeter)
-			{
-				minPerimeter = tempMinPerimeter;
-				minPerimeterIndex = i;
-			}
-		}
-		return m_shapes[minPerimeterIndex];
+		auto element = min_element(m_shapes.begin(), m_shapes.end(), [](IShape* a, IShape* b) {
+			return a->GetPerimeter() < b->GetPerimeter();
+		});
+		return *element;
 	}
 	return nullptr;
 }
