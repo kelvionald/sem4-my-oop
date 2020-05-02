@@ -6,7 +6,6 @@ CRectangle::CRectangle(CPoint leftTop, double width, double height, uint32_t out
 	: SolidShape(outlineColor, fillColor)
 {
 	m_leftTop = leftTop;
-	m_rightBottom = CPoint(leftTop.GetX() + width, leftTop.GetY() + height);
 	m_width = width;
 	m_height = height;
 }
@@ -41,7 +40,7 @@ CPoint CRectangle::GetLeftTop() const
 
 CPoint CRectangle::GetRightBottom() const
 {
-	return m_rightBottom;
+	return CPoint(m_leftTop.GetX() + m_width, m_leftTop.GetY() + m_height);
 }
 
 double CRectangle::GetWidth() const

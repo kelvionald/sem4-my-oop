@@ -17,7 +17,6 @@ public:
 
 private:
 	CPoint m_leftTop;
-	CPoint m_rightBottom;
 	double m_width;
 	double m_height;
 };
