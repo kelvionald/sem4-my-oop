@@ -19,6 +19,9 @@
     <Filter Include="Файлы заголовков\Helpers">
       <UniqueIdentifier>{0eac8392-7014-4f56-adb5-685a995f5270}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Helpers">
+      <UniqueIdentifier>{92b96956-8e3a-4bd1-94db-870b5616fb5d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -78,17 +81,17 @@
     <ClCompile Include="CLineSegmentTests.cpp">
       <Filter>Исходные файлы\ClassTests</Filter>
     </ClCompile>
-    <ClCompile Include="TestsGeneratorSolidShape.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="TestsGeneratorSolidShape.h">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="CTriangleTests.cpp">
       <Filter>Исходные файлы\ClassTests</Filter>
     </ClCompile>
     <ClCompile Include="CRectangleTests.cpp">
       <Filter>Исходные файлы\ClassTests</Filter>
+    </ClCompile>
+    <ClCompile Include="TestsGeneratorSolidShape.h">
+      <Filter>Файлы заголовков\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="TestsGeneratorSolidShape.cpp">
+      <Filter>Исходные файлы\Helpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
