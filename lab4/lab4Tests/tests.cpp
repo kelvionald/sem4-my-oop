@@ -118,7 +118,8 @@ TEST_CASE("CLineSegment")
 	}
 }
 
-void testsGeneratorSolidShape(ISolidShape& solidShape, double area, double perimeter, string str, uint32_t outlineColor, uint32_t fillColor)
+void TestsGeneratorSolidShape(const ISolidShape& solidShape, const double area, const double perimeter, 
+	const string& str, const uint32_t outlineColor, const uint32_t fillColor)
 {
 	SECTION("GetArea should returns area")
 	{
@@ -147,7 +148,7 @@ TEST_CASE("CCircle")
 	CPoint center = CPoint(0, 0);
 	CCircle circle(center, 2, 1, 1);
 	string expectedStr = "Circle(Point(x:0.000000; y:0.000000); radius:2.000000; outlineColor:1; fillColor:1; area:12.566371; perimeter:12.566371)";
-	testsGeneratorSolidShape(circle, M_PI * 4, 2 * M_PI * 2, expectedStr, 1, 1);
+	TestsGeneratorSolidShape(circle, M_PI * 4, 2 * M_PI * 2, expectedStr, 1, 1);
 	SECTION("GetCenter should returns center")
 	{
 		REQUIRE(circle.GetCenter() == center);
@@ -166,7 +167,7 @@ TEST_CASE("CTriangle")
 	CTriangle triangle(a, b, c, 1, 1);
 	string expectedStr = "Triangle(Point(x:0.000000; y:0.000000); Point(x:5.000000; y:0.000000); Point(x:0.000000; y:4.000000); outlineColor:1; fillColor:1; area:10.000000; perimeter:15.403124)";
 	double perimeter = 4 + 5 + Utils::GetDistance(b, c);
-	testsGeneratorSolidShape(triangle, 10, perimeter, expectedStr, 1, 1);
+	TestsGeneratorSolidShape(triangle, 10, perimeter, expectedStr, 1, 1);
 	SECTION("GetVertex1 should returns vertex A")
 	{
 		REQUIRE(triangle.GetVertex1() == a);
@@ -186,7 +187,7 @@ TEST_CASE("CRectangle")
 	CPoint leftTop(0, 0);
 	CRectangle rectangle(leftTop, 10, 8, 1, 1);
 	string expectedStr = "Rectangle(Point(x:0.000000; y:0.000000); width:10.000000; height:8.000000; outlineColor:1; fillColor:1; area:80.000000; perimeter:36.000000)";
-	testsGeneratorSolidShape(rectangle, 80, 36, expectedStr, 1, 1);
+	TestsGeneratorSolidShape(rectangle, 80, 36, expectedStr, 1, 1);
 	SECTION("GetLeftTop should returns left top point")
 	{
 		REQUIRE(rectangle.GetLeftTop() == leftTop);
