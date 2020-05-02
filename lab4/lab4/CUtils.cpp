@@ -7,7 +7,7 @@
 
 using namespace std;
 
-double CUtils::GetDistance(CPoint a, CPoint b)
+double CUtils::GetDistance(const CPoint a, const CPoint b)
 {
 	return sqrt(pow(a.GetX() - b.GetX(), 2) + pow(a.GetY() - b.GetY(), 2));
 }
@@ -29,7 +29,7 @@ vector<string> CUtils::Split(const string& input)
 	return arr;
 }
 
-bool CUtils::IsValidHexColor(string color)
+bool CUtils::IsValidHexColor(const string& color)
 {
 	if (color.length() != 6)
 	{
@@ -46,7 +46,7 @@ bool CUtils::IsValidHexColor(string color)
 	return true;
 }
 
-uint32_t CUtils::ParseColor(string hexColor)
+uint32_t CUtils::ParseColor(const string& hexColor)
 {
 	return stoul(hexColor, nullptr, 16);
 }

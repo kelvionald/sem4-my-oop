@@ -5,8 +5,8 @@
 
 namespace CUtils
 {
-	double GetDistance(CPoint a, CPoint b);
+	double GetDistance(const CPoint a, const CPoint b);
 	std::vector<std::string> Split(const std::string& input);
-	bool IsValidHexColor(std::string color);
-	uint32_t ParseColor(std::string hexColor);
+	bool IsValidHexColor(const std::string& color);
+	uint32_t ParseColor(const std::string& hexColor);
 };
