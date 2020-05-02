@@ -7,46 +7,49 @@
 
 using namespace std;
 
-double CUtils::GetDistance(const CPoint a, const CPoint b)
+namespace CUtils
 {
-	return sqrt(pow(a.GetX() - b.GetX(), 2) + pow(a.GetY() - b.GetY(), 2));
-}
-
-vector<string> CUtils::Split(const string& input)
-{
-	stringstream ss;
-	ss << input;
-	vector<string> arr;
-	while (!ss.eof())
+	double GetDistance(const CPoint a, const CPoint b)
 	{
-		string word;
-		getline(ss, word, ' ');
-		if (word.length())
+		return sqrt(pow(a.GetX() - b.GetX(), 2) + pow(a.GetY() - b.GetY(), 2));
+	}
+
+	vector<string> Split(const string& input)
+	{
+		stringstream ss;
+		ss << input;
+		vector<string> arr;
+		while (!ss.eof())
 		{
-			arr.push_back(word);
+			string word;
+			getline(ss, word, ' ');
+			if (word.length())
+			{
+				arr.push_back(word);
+			}
 		}
+		return arr;
 	}
-	return arr;
-}
 
-bool CUtils::IsValidHexColor(const string& color)
-{
-	if (color.length() != 6)
+	bool IsValidHexColor(const string& color)
 	{
-		return false;
-	}
-	for (int i = 0; i < color.length(); i++)
-	{
-		char ch = color[i];
-		if (!(isdigit(ch) || 'A' <= ch && ch <= 'F' || 'a' <= ch && ch <= 'f'))
+		if (color.length() != 6)
 		{
 			return false;
 		}
+		for (int i = 0; i < color.length(); i++)
+		{
+			char ch = color[i];
+			if (!(isdigit(ch) || 'A' <= ch && ch <= 'F' || 'a' <= ch && ch <= 'f'))
+			{
+				return false;
+			}
+		}
+		return true;
 	}
-	return true;
-}
 
-uint32_t CUtils::ParseColor(const string& hexColor)
-{
-	return stoul(hexColor, nullptr, 16);
+	uint32_t ParseColor(const string& hexColor)
+	{
+		return stoul(hexColor, nullptr, 16);
+	}
 }
