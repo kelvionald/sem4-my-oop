@@ -11,18 +11,18 @@ CTriangle::CTriangle(CPoint a, CPoint b, CPoint c, uint32_t outlineColor, uint32
 	m_c = c;
 }
 
-double CTriangle::GetArea()
+double CTriangle::GetArea() const
 {
 	return abs((m_b.GetX() - m_a.GetX()) * (m_c.GetY() - m_a.GetY())
 		- (m_c.GetX() - m_a.GetX()) * (m_b.GetY() - m_a.GetY())) / 2;
 }
 
-double CTriangle::GetPerimeter()
+double CTriangle::GetPerimeter() const
 {
 	return CUtils::GetDistance(m_a, m_b) + CUtils::GetDistance(m_b, m_c) + CUtils::GetDistance(m_c, m_a);
 }
 
-std::string CTriangle::ToString()
+std::string CTriangle::ToString() const
 {
 	return "Triangle("
 		+ m_a.ToString() + "; "
@@ -35,17 +35,17 @@ std::string CTriangle::ToString()
 		+ ")";
 }
 
-CPoint CTriangle::GetVertex1()
+CPoint CTriangle::GetVertex1() const
 {
 	return m_a;
 }
 
-CPoint CTriangle::GetVertex2()
+CPoint CTriangle::GetVertex2() const
 {
 	return m_b;
 }
 
-CPoint CTriangle::GetVertex3()
+CPoint CTriangle::GetVertex3() const
 {
 	return m_c;
 }

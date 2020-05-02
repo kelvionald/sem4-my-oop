@@ -11,17 +11,17 @@ CLineSegment::CLineSegment(CPoint start, CPoint end, uint32_t outlineColor)
 	m_outlineColor = outlineColor;
 }
 
-double CLineSegment::GetArea()
+double CLineSegment::GetArea() const
 {
 	return 0;
 }
 
-double CLineSegment::GetPerimeter()
+double CLineSegment::GetPerimeter() const
 {
 	return CUtils::GetDistance(m_startPoint, m_endPoint);
 }
 
-string CLineSegment::ToString()
+string CLineSegment::ToString() const
 {
 	return "LineSegment("
 		+ m_startPoint.ToString() + "; " 
@@ -32,17 +32,17 @@ string CLineSegment::ToString()
 		+ ")";
 }
 
-uint32_t CLineSegment::GetOutlineColor()
+uint32_t CLineSegment::GetOutlineColor() const
 {
 	return m_outlineColor;
 }
 
-CPoint CLineSegment::GetStartPoint()
+CPoint CLineSegment::GetStartPoint() const
 {
 	return m_startPoint;
 }
 
-CPoint CLineSegment::GetEndPoint()
+CPoint CLineSegment::GetEndPoint() const
 {
 	return m_endPoint;
 }

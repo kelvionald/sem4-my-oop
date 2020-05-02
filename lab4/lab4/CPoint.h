@@ -6,9 +6,9 @@ class CPoint
 public:
 	CPoint();
 	CPoint(double x, double y);
-	double GetX();
-	double GetY();
-	std::string ToString();
+	double GetX() const;
+	double GetY() const;
+	std::string ToString() const;
 	friend bool operator==(const CPoint& a, const CPoint& b);
 
 private:

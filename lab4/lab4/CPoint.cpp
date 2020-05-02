@@ -13,17 +13,17 @@ CPoint::CPoint(double x, double y)
 	m_y = y;
 }
 
-double CPoint::GetX()
+double CPoint::GetX() const
 {
 	return m_x;
 }
 
-double CPoint::GetY()
+double CPoint::GetY() const
 {
 	return m_y;
 }
 
-string CPoint::ToString()
+string CPoint::ToString() const
 {
 	return "Point(x:" + to_string(m_x) + "; y:" + to_string(m_y) + ")";
 }

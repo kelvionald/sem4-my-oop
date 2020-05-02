@@ -11,17 +11,17 @@ CRectangle::CRectangle(CPoint leftTop, double width, double height, uint32_t out
 	m_height = height;
 }
 
-double CRectangle::GetArea()
+double CRectangle::GetArea() const
 {
 	return m_width * m_height;
 }
 
-double CRectangle::GetPerimeter()
+double CRectangle::GetPerimeter() const
 {
 	return m_width * 2 + m_height * 2;
 }
 
-string CRectangle::ToString()
+string CRectangle::ToString() const
 {
 	return "Rectangle("
 		+ m_leftTop.ToString() + "; "
@@ -34,22 +34,22 @@ string CRectangle::ToString()
 		+ ")";
 }
 
-CPoint CRectangle::GetLeftTop()
+CPoint CRectangle::GetLeftTop() const
 {
 	return m_leftTop;
 }
 
-CPoint CRectangle::GetRightBottom()
+CPoint CRectangle::GetRightBottom() const
 {
 	return m_rightBottom;
 }
 
-double CRectangle::GetWidth()
+double CRectangle::GetWidth() const
 {
 	return m_width;
 }
 
-double CRectangle::GetHeight()
+double CRectangle::GetHeight() const
 {
 	return m_height;
 }

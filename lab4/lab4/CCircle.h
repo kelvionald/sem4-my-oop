@@ -6,11 +6,11 @@ class CCircle : public SolidShape
 {
 public:
 	CCircle(CPoint center, double radius, uint32_t outlineColor, uint32_t fillColor);
-	virtual double GetArea() override;
-	virtual double GetPerimeter() override;
-	virtual std::string ToString() override;
-	double GetRadius();
-	CPoint GetCenter();
+	virtual double GetArea() const override;
+	virtual double GetPerimeter() const override;
+	virtual std::string ToString() const override;
+	double GetRadius() const;
+	CPoint GetCenter() const;
 
 private:
 	CPoint m_center;

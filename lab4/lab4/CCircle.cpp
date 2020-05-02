@@ -11,17 +11,17 @@ CCircle::CCircle(CPoint center, double radius, uint32_t outlineColor, uint32_t f
 	m_radius = radius;
 }
 
-double CCircle::GetArea()
+double CCircle::GetArea() const
 {
 	return M_PI * pow(m_radius, 2);
 }
 
-double CCircle::GetPerimeter()
+double CCircle::GetPerimeter() const
 {
 	return 2 * M_PI * m_radius;
 }
 
-string CCircle::ToString()
+string CCircle::ToString() const
 {
 	return "Circle(" 
 		+ m_center.ToString() + "; " 
@@ -33,12 +33,12 @@ string CCircle::ToString()
 		+ ")";
 }
 
-double CCircle::GetRadius()
+double CCircle::GetRadius() const
 {
 	return m_radius;
 }
 
-CPoint CCircle::GetCenter()
+CPoint CCircle::GetCenter() const
 {
 	return m_center;
 }

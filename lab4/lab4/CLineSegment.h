@@ -6,12 +6,12 @@ class CLineSegment : public IShape
 {
 public:
 	CLineSegment(CPoint start, CPoint end, uint32_t color);
-	virtual double GetArea() override;
-	virtual double GetPerimeter() override;
-	virtual std::string ToString() override;
-	virtual uint32_t GetOutlineColor() override;
-	CPoint GetStartPoint();
-	CPoint GetEndPoint();
+	virtual double GetArea() const override;
+	virtual double GetPerimeter() const override;
+	virtual std::string ToString() const override;
+	virtual uint32_t GetOutlineColor() const override;
+	CPoint GetStartPoint() const;
+	CPoint GetEndPoint() const;
 
 private:
 	uint32_t m_outlineColor;

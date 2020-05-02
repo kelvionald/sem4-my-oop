@@ -8,5 +8,5 @@ private:
 	uint32_t m_fillColor;
 
 public:
-	virtual uint32_t GetFillColor() = 0;
+	virtual uint32_t GetFillColor() const = 0;
 };
