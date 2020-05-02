@@ -2,7 +2,7 @@
 #include "CNonColorException.h"
 #include "CNonDoubleException.h"
 #include "CParamsCountException.h"
-#include "CUtils.h"
+#include "Utils.h"
 #include <algorithm>
 
 using namespace std;

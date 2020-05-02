@@ -2,7 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include "lab4\lab4\CPoint.h"
-#include "lab4\lab4\CUtils.h"
+#include "lab4\lab4\Utils.h"
 #include "lab4\lab4\CLineSegment.h"
 #include "lab4\lab4\CCircle.h"
 #include "lab4\lab4\CTriangle.h"

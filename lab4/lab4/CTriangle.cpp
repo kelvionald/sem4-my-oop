@@ -1,5 +1,5 @@
 #include "CTriangle.h"
-#include "CUtils.h"
+#include "Utils.h"
 
 using namespace std;
 

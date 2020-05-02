@@ -155,7 +155,7 @@
     <ClCompile Include="CPoint.cpp" />
     <ClCompile Include="CRectangle.cpp" />
     <ClCompile Include="CTriangle.cpp" />
-    <ClCompile Include="CUtils.cpp" />
+    <ClCompile Include="Utils.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="SolidShape.cpp" />
@@ -170,7 +170,7 @@
     <ClInclude Include="CPoint.h" />
     <ClInclude Include="CRectangle.h" />
     <ClInclude Include="CTriangle.h" />
-    <ClInclude Include="CUtils.h" />
+    <ClInclude Include="Utils.h" />
     <ClInclude Include="IShape.h" />
     <ClInclude Include="ISolidShape.h" />
     <ClInclude Include="SolidShape.h" />

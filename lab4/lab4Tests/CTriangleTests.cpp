@@ -1,7 +1,7 @@
 #include "catch2\catch.hpp"
 #include "lab4\lab4\CTriangle.h"
 #include "lab4\lab4\CPoint.h"
-#include "lab4\lab4\CUtils.h"
+#include "lab4\lab4\Utils.h"
 #include "TestsGeneratorSolidShape.h"
 
 using namespace std;

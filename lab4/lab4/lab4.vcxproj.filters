@@ -24,7 +24,7 @@
     <ClCompile Include="CPoint.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="CUtils.cpp">
+    <ClCompile Include="Utils.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="SolidShape.cpp">
@@ -65,7 +65,7 @@
     <ClInclude Include="ISolidShape.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="CUtils.h">
+    <ClInclude Include="Utils.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="SolidShape.h">

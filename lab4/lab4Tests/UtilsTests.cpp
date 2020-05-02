@@ -1,10 +1,10 @@
 #include "catch2\catch.hpp"
 #include "lab4\lab4\CPoint.h"
-#include "lab4\lab4\CUtils.h"
+#include "lab4\lab4\Utils.h"
 
 using namespace std;
 
-TEST_CASE("CUtils")
+TEST_CASE("Utils")
 {
 	SECTION("GetDistance should returns distance between two points")
 	{

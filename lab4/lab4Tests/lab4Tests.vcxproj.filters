@@ -33,7 +33,7 @@
     <ClCompile Include="..\lab4\CPoint.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\lab4\CUtils.cpp">
+    <ClCompile Include="..\lab4\Utils.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="..\lab4\CCircle.cpp">
@@ -66,7 +66,7 @@
     <ClCompile Include="CPointTests.cpp">
       <Filter>Исходные файлы\ClassTests</Filter>
     </ClCompile>
-    <ClCompile Include="CUtilsTests.cpp">
+    <ClCompile Include="UtilsTests.cpp">
       <Filter>Исходные файлы\ClassTests</Filter>
     </ClCompile>
     <ClCompile Include="ProgramTests.cpp">
@@ -107,7 +107,7 @@
     <ClInclude Include="..\lab4\CTriangle.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="..\lab4\CUtils.h">
+    <ClInclude Include="..\lab4\Utils.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="..\lab4\IShape.h">
