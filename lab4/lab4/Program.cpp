@@ -80,17 +80,17 @@ void ReadPoint(CPoint& point, stringstream& ss)
 	point = CPoint(x, y);
 }
 
-CLineSegment* Program::ReadLineSegment(stringstream& ss)
+shared_ptr<CLineSegment> Program::ReadLineSegment(stringstream& ss)
 {
 	CPoint a, b;
 	string outlineColor;
 	ReadPoint(a, ss);
 	ReadPoint(b, ss);
 	ReadColor(ss, outlineColor);
-	return new CLineSegment(a, b, Utils::ParseColor(outlineColor));
+	return shared_ptr<CLineSegment>(new CLineSegment(a, b, Utils::ParseColor(outlineColor)));
 }
 
-CTriangle* Program::ReadTriangle(stringstream& ss)
+shared_ptr<CTriangle> Program::ReadTriangle(stringstream& ss)
 {
 	CPoint a, b, c;
 	string outlineColor, fillColor;
@@ -99,10 +99,11 @@ CTriangle* Program::ReadTriangle(stringstream& ss)
 	ReadPoint(c, ss);
 	ReadColor(ss, outlineColor);
 	ReadColor(ss, fillColor);
-	return new CTriangle(a, b, c, Utils::ParseColor(outlineColor), Utils::ParseColor(fillColor));
+	return shared_ptr<CTriangle>(new CTriangle(a, b, c, Utils::ParseColor(outlineColor),
+		Utils::ParseColor(fillColor)));
 }
 
-CRectangle* Program::ReadRectangle(stringstream& ss)
+shared_ptr<CRectangle> Program::ReadRectangle(stringstream& ss)
 {
 	CPoint a;
 	double width, height;
@@ -112,10 +113,11 @@ CRectangle* Program::ReadRectangle(stringstream& ss)
 	ReadDouble(height, ss);
 	ReadColor(ss, outlineColor);
 	ReadColor(ss, fillColor);
-	return new CRectangle(a, width, height, Utils::ParseColor(outlineColor), Utils::ParseColor(fillColor));
+	return shared_ptr<CRectangle>(new CRectangle(a, width, height, Utils::ParseColor(outlineColor),
+		Utils::ParseColor(fillColor)));
 }
 
-CCircle* Program::ReadCircle(stringstream& ss)
+shared_ptr<CCircle> Program::ReadCircle(stringstream& ss)
 {
 	double ax, ay, radius;
 	string outlineColor, fillColor;
@@ -125,16 +127,16 @@ CCircle* Program::ReadCircle(stringstream& ss)
 	}
 	ReadColor(ss, outlineColor);
 	ReadColor(ss, fillColor);
-	return new CCircle(CPoint(ax, ay), radius,
+	return shared_ptr<CCircle>(new CCircle(CPoint(ax, ay), radius,
 		Utils::ParseColor(outlineColor),
-		Utils::ParseColor(fillColor));
+		Utils::ParseColor(fillColor)));
 }
 
-IShape* Program::FindWithMaxArea()
+shared_ptr<IShape> Program::FindWithMaxArea()
 {
 	if (m_shapes.size())
 	{
-		auto element = max_element(m_shapes.begin(), m_shapes.end(), [](IShape* a, IShape* b) {
+		auto element = max_element(m_shapes.begin(), m_shapes.end(), [](shared_ptr<IShape> a, shared_ptr<IShape> b) {
 			return a->GetArea() < b->GetArea();
 		});
 		return *element;
@@ -142,11 +144,11 @@ IShape* Program::FindWithMaxArea()
 	return nullptr;
 }
 
-IShape* Program::FindWithMinPerimeter()
+shared_ptr<IShape> Program::FindWithMinPerimeter()
 {
 	if (m_shapes.size())
 	{
-		auto element = min_element(m_shapes.begin(), m_shapes.end(), [](IShape* a, IShape* b) {
+		auto element = min_element(m_shapes.begin(), m_shapes.end(), [](shared_ptr<IShape> a, shared_ptr<IShape> b) {
 			return a->GetPerimeter() < b->GetPerimeter();
 		});
 		return *element;
@@ -154,7 +156,7 @@ IShape* Program::FindWithMinPerimeter()
 	return nullptr;
 }
 
-IShape* Program::GetShapeByIndex(int index)
+shared_ptr<IShape> Program::GetShapeByIndex(int index)
 {
 	return m_shapes[index];
 }

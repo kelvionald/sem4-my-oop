@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
+#include <memory>
 #include "IShape.h"
 #include "CLineSegment.h"
 #include "CTriangle.h"
@@ -12,14 +13,14 @@ class Program
 {
 public:
 	void ReadShapes(std::istream& input);
-	CLineSegment* ReadLineSegment(std::stringstream& ss);
-	CTriangle* ReadTriangle(std::stringstream& ss);
-	CRectangle* ReadRectangle(std::stringstream& ss);
-	CCircle* ReadCircle(std::stringstream& ss);
-	IShape* FindWithMaxArea();
-	IShape* FindWithMinPerimeter();
-	IShape* GetShapeByIndex(int index);
+	std::shared_ptr<CLineSegment> ReadLineSegment(std::stringstream& ss);
+	std::shared_ptr<CTriangle> ReadTriangle(std::stringstream& ss);
+	std::shared_ptr<CRectangle> ReadRectangle(std::stringstream& ss);
+	std::shared_ptr<CCircle> ReadCircle(std::stringstream& ss);
+	std::shared_ptr<IShape> FindWithMaxArea();
+	std::shared_ptr<IShape> FindWithMinPerimeter();
+	std::shared_ptr<IShape> GetShapeByIndex(int index);
 
 private:
-	std::vector<IShape*> m_shapes;
+	std::vector<std::shared_ptr<IShape>> m_shapes;
 };
