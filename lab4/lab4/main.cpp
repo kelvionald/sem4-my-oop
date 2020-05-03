@@ -9,8 +9,8 @@ int main()
 	try
 	{
 		program.ReadShapes(cin);
-		IShape* bigAreaShape = program.FindWithMaxArea();
-		IShape* smallPerimeterShape = program.FindWithMinPerimeter();
+		shared_ptr<IShape> bigAreaShape = program.FindWithMaxArea();
+		shared_ptr<IShape> smallPerimeterShape = program.FindWithMinPerimeter();
 		if (bigAreaShape != nullptr)
 		{
 			cout << "Shape with max area: " << bigAreaShape->ToString() << endl;

@@ -13,59 +13,53 @@ TEST_CASE("Program")
 {
 	SECTION("ReadShapes should reads shapes")
 	{
-		Program program;
-		istringstream input("triangle 1.0 1.0 1.0 2.0 2.0 1.0 ffffff 000000\n"
-							"lineSegment 1.0 1.0 1.0 2.0 ffffff");
-		program.ReadShapes(input);
-		SECTION("lineSegment reading")
+		SECTION("lineSegment reading, last is lineSegment")
 		{
-			shared_ptr<CLineSegment> lineSegment = dynamic_pointer_cast<CLineSegment>(program.GetShapeByIndex(1));
+			Program program;
+			istringstream input("triangle 1.0 1.0 1.0 2.0 2.0 1.0 ffffff 000000\n"
+								"lineSegment 1.0 1.0 1.0 2.0 ffffff");
+			program.ReadShapes(input);
+			shared_ptr<CLineSegment> lineSegment = static_pointer_cast<CLineSegment>(program.GetShapeByIndex(1));
 			REQUIRE(lineSegment->GetStartPoint() == CPoint(1, 1));
 			REQUIRE(lineSegment->GetEndPoint() == CPoint(1, 2));
 			REQUIRE(lineSegment->GetOutlineColor() == 16777215);
 		}
-	}
-	SECTION("ReadLineSegment should reads lineSegment")
-	{
-		Program program;
-		stringstream input("1.0 1.0 1.0 2.0 ffffff");
-		shared_ptr<CLineSegment> lineSegment = program.ReadLineSegment(input);
-		REQUIRE(lineSegment->GetStartPoint() == CPoint(1, 1));
-		REQUIRE(lineSegment->GetEndPoint() == CPoint(1, 2));
-		REQUIRE(lineSegment->GetOutlineColor() == 16777215);
-	}
-	SECTION("ReadTriangle should reads triangle")
-	{
-		Program program;
-		stringstream input("1.0 1.0 1.0 2.0 2.0 1.0 ffffff 000000");
-		shared_ptr<CTriangle> lineSegment = program.ReadTriangle(input);
-		REQUIRE(lineSegment->GetVertex1() == CPoint(1, 1));
-		REQUIRE(lineSegment->GetVertex2() == CPoint(1, 2));
-		REQUIRE(lineSegment->GetVertex3() == CPoint(2, 1));
-		REQUIRE(lineSegment->GetOutlineColor() == 16777215);
-		REQUIRE(lineSegment->GetFillColor() == 0);
-	}
-	SECTION("ReadRectangle should reads rectangle")
-	{
-		Program program;
-		stringstream input("1.0 1.0 2.0 3.0 ffffff 000000");
-		shared_ptr<CRectangle> lineSegment = program.ReadRectangle(input);
-		REQUIRE(lineSegment->GetLeftTop() == CPoint(1, 1));
-		REQUIRE(lineSegment->GetRightBottom() == CPoint(3, 4));
-		REQUIRE(lineSegment->GetWidth() == 2);
-		REQUIRE(lineSegment->GetHeight() == 3);
-		REQUIRE(lineSegment->GetOutlineColor() == 16777215);
-		REQUIRE(lineSegment->GetFillColor() == 0);
-	}
-	SECTION("ReadCircle should reads rectangle")
-	{
-		Program program;
-		stringstream input("1.0 1.0 2.0 ffffff 000000");
-		shared_ptr<CCircle> lineSegment = program.ReadCircle(input);
-		REQUIRE(lineSegment->GetCenter() == CPoint(1, 1));
-		REQUIRE(lineSegment->GetRadius() == 2);
-		REQUIRE(lineSegment->GetOutlineColor() == 16777215);
-		REQUIRE(lineSegment->GetFillColor() == 0);
+		SECTION("triangle reading")
+		{
+			Program program;
+			istringstream input("triangle 1.0 1.0 1.0 2.0 2.0 1.0 ffffff 000000");
+			program.ReadShapes(input);
+			shared_ptr<CTriangle> triangle = static_pointer_cast<CTriangle>(program.GetShapeByIndex(0));
+			REQUIRE(triangle->GetVertex1() == CPoint(1, 1));
+			REQUIRE(triangle->GetVertex2() == CPoint(1, 2));
+			REQUIRE(triangle->GetVertex3() == CPoint(2, 1));
+			REQUIRE(triangle->GetOutlineColor() == 16777215);
+			REQUIRE(triangle->GetFillColor() == 0);
+		}
+		SECTION("rectangle reading")
+		{
+			Program program;
+			istringstream input("rectangle 1.0 1.0 2.0 3.0 ffffff 000000");
+			program.ReadShapes(input);
+			shared_ptr<CRectangle> rectangle = static_pointer_cast<CRectangle>(program.GetShapeByIndex(0));
+			REQUIRE(rectangle->GetLeftTop() == CPoint(1, 1));
+			REQUIRE(rectangle->GetRightBottom() == CPoint(3, 4));
+			REQUIRE(rectangle->GetWidth() == 2);
+			REQUIRE(rectangle->GetHeight() == 3);
+			REQUIRE(rectangle->GetOutlineColor() == 16777215);
+			REQUIRE(rectangle->GetFillColor() == 0);
+		}
+		SECTION("circle reading")
+		{
+			Program program;
+			istringstream input("circle 1.0 1.0 2.0 ffffff 000000");
+			program.ReadShapes(input);
+			shared_ptr<CCircle> circle = static_pointer_cast<CCircle>(program.GetShapeByIndex(0));
+			REQUIRE(circle->GetCenter() == CPoint(1, 1));
+			REQUIRE(circle->GetRadius() == 2);
+			REQUIRE(circle->GetOutlineColor() == 16777215);
+			REQUIRE(circle->GetFillColor() == 0);
+		}
 	}
 	SECTION("FindWithMaxArea should returns shape with max area")
 	{
@@ -75,7 +69,7 @@ TEST_CASE("Program")
 		program.ReadShapes(input);
 		SECTION("lineSegment reading")
 		{
-			shared_ptr<CRectangle> rectangle = dynamic_pointer_cast<CRectangle>(program.FindWithMaxArea());
+			shared_ptr<CRectangle> rectangle = static_pointer_cast<CRectangle>(program.FindWithMaxArea());
 			REQUIRE(rectangle->GetHeight() == 3);
 		}
 	}
@@ -87,7 +81,7 @@ TEST_CASE("Program")
 		program.ReadShapes(input);
 		SECTION("lineSegment reading")
 		{
-			shared_ptr<CRectangle> rectangle = dynamic_pointer_cast<CRectangle>(program.FindWithMinPerimeter());
+			shared_ptr<CRectangle> rectangle = static_pointer_cast<CRectangle>(program.FindWithMinPerimeter());
 			REQUIRE(rectangle->GetHeight() == 2);
 		}
 	}
