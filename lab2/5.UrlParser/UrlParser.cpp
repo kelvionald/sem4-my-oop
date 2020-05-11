@@ -60,10 +60,9 @@ optional<int> DeterminePort(string portStr, Protocol& protocol)
 bool ParseURL(string const& url, Protocol& protocol, int& port, string& host, string& document)
 {
 	cmatch matchResult;
-	string str = url; //"<h2> Egg prices </h2>";
-	regex rx("^(.*)://([A-Za-z0-9\-\.]+)(:([0-9]+))?(/(.*))?$");
+	string str = url;
+	regex rx("^(.*)://([A-Za-z0-9\\-\\.]+)(:([0-9]+))?(/(.*))?$");
 	regex_search(str.c_str(), matchResult, rx);
-	int c = 0;
 	if (matchResult.size() != 7)
 	{
 		return false;
