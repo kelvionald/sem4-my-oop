@@ -160,10 +160,11 @@
   <ItemGroup>
     <ClCompile Include="..\TV\CommandHandler.cpp" />
     <ClCompile Include="..\TV\CTVSet.cpp" />
+    <ClCompile Include="CTVSetTests.cpp" />
     <ClCompile Include="main.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="tests.cpp" />
+    <ClCompile Include="HandleTvCommandsTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\TV\CommandHandler.h" />

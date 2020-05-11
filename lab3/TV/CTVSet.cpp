@@ -16,17 +16,19 @@ bool CTVSet::IsAllowRange(int channel)
 	return m_minChannel <= channel && channel <= m_maxChannel;
 }
 
-void CTVSet::SelectChannel(int channel)
+bool CTVSet::SelectChannel(int channel)
 {
 	if (!m_isEnabled)
 	{
-		return;
+		return false;
 	}
 	if (IsAllowRange(channel))
 	{
 		m_previousChannel = m_channel;
 		m_channel = channel;
+		return true;
 	}
+	return false;
 }
 
 int CTVSet::GetChannel() const
