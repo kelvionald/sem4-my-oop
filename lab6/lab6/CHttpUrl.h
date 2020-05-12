@@ -24,7 +24,8 @@ public:
 	std::string GetDomain()const;
 	std::string GetDocument()const;
 	Protocol GetProtocol()const;
-	unsigned short GetPort()const;
+	unsigned short GetPort() const;
+	std::string GetStrProtocol(Protocol protocol) const;
 	static const unsigned short PORT_HTTP = 80;
 	static const unsigned short PORT_HTTPS = 443;
 
@@ -34,7 +35,6 @@ private:
 	std::string m_document;
 	std::string m_domain;
 	bool IsPortBelongsProtocol(Protocol protocol, unsigned short port) const;
-	std::string GetStrProtocol(Protocol protocol) const;
 	Protocol DetermineProtocol(std::string const& protocolStr) const;
 	unsigned short DeterminePort(std::string const& portStr, Protocol& protocol) const;
 	void FillDocument(std::string const& document);

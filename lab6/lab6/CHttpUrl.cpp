@@ -20,7 +20,7 @@ Protocol CHttpUrl::DetermineProtocol(string const& protocolStr) const
 	}
 	else
 	{
-		throw invalid_argument("Undefined protocol!");
+		throw invalid_argument("Undefined protocol");
 	}
 }
 
@@ -36,7 +36,7 @@ unsigned short CHttpUrl::DeterminePort(string const& portStr, Protocol& protocol
 		}
 		else
 		{
-			throw invalid_argument("Invalid port range!");
+			throw invalid_argument("Incorrect port");
 		}
 	}
 	return GetPortByProtocol(protocol);
@@ -67,7 +67,7 @@ unsigned short CHttpUrl::GetPortByProtocol(Protocol protocol) const
 	case Protocol::HTTPS:
 		return CHttpUrl::PORT_HTTPS;
 	default:
-		throw invalid_argument("Undefined protocol!");
+		throw invalid_argument("Undefined protocol");
 	}
 }
 
@@ -75,7 +75,7 @@ void CHttpUrl::SetDomain(std::string const& domain)
 {
 	if (domain.empty())
 	{
-		throw invalid_argument("Empty domain!");
+		throw invalid_argument("Empty domain");
 	}
 	m_domain = domain;
 }
@@ -84,7 +84,7 @@ void CHttpUrl::SetPort(unsigned short port)
 {
 	if (!IsCorrectPort(port))
 	{
-		throw invalid_argument("Incorrect port!");
+		throw invalid_argument("Incorrect port");
 	}
 	m_port = port;
 }
@@ -130,13 +130,13 @@ std::string CHttpUrl::GetStrProtocol(Protocol protocol) const
 {
 	if (protocol == Protocol::HTTP)
 	{
-		return "http://";
+		return "http";
 	}
 	else if (protocol == Protocol::HTTPS)
 	{
-		return "https://";
+		return "https";
 	}
-	throw invalid_argument("Undefined protocol!");
+	throw invalid_argument("Undefined protocol");
 }
 
 bool CHttpUrl::IsPortBelongsProtocol(Protocol protocol, unsigned short port) const
@@ -147,7 +147,7 @@ bool CHttpUrl::IsPortBelongsProtocol(Protocol protocol, unsigned short port) con
 
 std::string CHttpUrl::GetURL() const
 {
-	string url = GetStrProtocol(m_protocol);
+	string url = GetStrProtocol(m_protocol) + "://";
 	url += m_domain;
 	if (!IsPortBelongsProtocol(m_protocol, m_port))
 	{

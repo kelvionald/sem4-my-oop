@@ -30,6 +30,9 @@
     <ClCompile Include="CHttpUrlTests.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="CUrlInfoTests.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lab6\CUrlParsingError.h">

@@ -41,6 +41,13 @@ TEST_CASE("CHttpUrl")
 				MakeUrlTest(url, link, Protocol::HTTP, "www.cplusplus.com", 81,
 					"/reference/regex/");
 			}
+			SECTION("http url with standart port")
+			{
+				string link = "http://www.cplusplus.com:80/reference/regex/";
+				CHttpUrl url(link);
+				MakeUrlTest(url, "http://www.cplusplus.com/reference/regex/", Protocol::HTTP, 
+					"www.cplusplus.com", CHttpUrl::PORT_HTTP, "/reference/regex/");
+			}
 			SECTION("https url without port")
 			{
 				string link = "https://www.cplusplus.com/reference/regex/";
@@ -130,7 +137,6 @@ TEST_CASE("CHttpUrl")
 		SECTION("incorrect port")
 		{
 			REQUIRE_THROWS(url = new CHttpUrl("localhost", "", Protocol::HTTP, 0));
-			REQUIRE_THROWS(url = new CHttpUrl("localhost", "", Protocol::HTTP, 65536));
 		}
 		SECTION("correct port")
 		{

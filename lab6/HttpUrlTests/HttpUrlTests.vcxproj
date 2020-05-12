@@ -167,6 +167,7 @@
     <ClCompile Include="..\lab6\CUrlInfo.cpp" />
     <ClCompile Include="..\lab6\CUrlParsingError.cpp" />
     <ClCompile Include="CHttpUrlTests.cpp" />
+    <ClCompile Include="CUrlInfoTests.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
