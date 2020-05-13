@@ -1,5 +1,9 @@
 #include "lab7/CMyStack/CMyStack.h"
 #include <catch2/catch.hpp>
+#include <utility>
+#include <string>
+
+using namespace std;
 
 TEST_CASE("CMyStack")
 {
@@ -84,7 +88,100 @@ TEST_CASE("CMyStack")
 			REQUIRE(stack.IsEmpty());
 		}
 	}
-	SECTION("CMyStack(CMyStack const& stack)")
+	SECTION("auto expand size")
 	{
+		CMyStack<int> stack;
+		for (int i = 0; i < 34; i++)
+		{
+			stack.Push(i);
+		}
+		for (int i = 33; i >= 0; i--)
+		{
+			REQUIRE(stack.Pop() == i);
+		}
+	}
+	SECTION("copy constructor")
+	{
+		SECTION("empty")
+		{
+			CMyStack<int> stack1;
+
+			CMyStack<int> stack2(stack1);
+
+			REQUIRE(stack2.IsEmpty());
+		}
+		SECTION("few elements")
+		{
+			CMyStack<int> stack1;
+			stack1.Push(1);
+			stack1.Push(2);
+
+			CMyStack<int> stack2(stack1);
+
+			REQUIRE(!stack2.IsEmpty());
+			REQUIRE(stack2.Pop() == 2);
+			REQUIRE(stack2.Pop() == 1);
+			REQUIRE(stack2.IsEmpty());
+		}
+	}
+	SECTION("copy assignment")
+	{
+		SECTION("empty")
+		{
+			CMyStack<int> stack1;
+			CMyStack<int> stack2;
+			stack2.Push(1);
+			REQUIRE(!stack2.IsEmpty());
+
+			stack2 = stack1;
+
+			REQUIRE(stack2.IsEmpty());
+		}
+		SECTION("few elements")
+		{
+			CMyStack<int> stack1;
+			CMyStack<int> stack2;
+			stack1.Push(1);
+			stack1.Push(2);
+
+			stack2 = stack1;
+
+			REQUIRE(!stack2.IsEmpty());
+			REQUIRE(stack2.Pop() == 2);
+			REQUIRE(stack2.Pop() == 1);
+		}
+	}
+	SECTION("move assignment")
+	{
+		CMyStack<int> stack1;
+		stack1.Push(1);
+		stack1.Push(2);
+		CMyStack<int> stack2 = move(stack1);
+
+		REQUIRE(!stack2.IsEmpty());
+		REQUIRE(stack2.Pop() == 2);
+		REQUIRE(stack2.Pop() == 1);
+	}
+	SECTION("move constructor")
+	{
+		CMyStack<int> stack1;
+		stack1.Push(1);
+		stack1.Push(2);
+		CMyStack<int> stack2(move(stack1));
+
+		REQUIRE(!stack2.IsEmpty());
+		REQUIRE(stack2.Pop() == 2);
+		REQUIRE(stack2.Pop() == 1);
+	}
+	SECTION("string works")
+	{
+		CMyStack<string> stack1;
+		stack1.Push("Hello");
+		stack1.Push("world");
+		CMyStack<string> stack2(move(stack1));
+
+		REQUIRE(!stack2.IsEmpty());
+		REQUIRE(stack2.Pop() == "world");
+		REQUIRE(stack2.Pop() == "Hello");
 	}
 }
