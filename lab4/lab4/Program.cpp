@@ -80,7 +80,7 @@ void ReadPoint(CPoint& point, stringstream& ss)
 	point = CPoint(x, y);
 }
 
-shared_ptr<CLineSegment> Program::ReadLineSegment(stringstream& ss)
+shared_ptr<CLineSegment> Program::ReadLineSegment(stringstream& ss) const
 {
 	CPoint a, b;
 	string outlineColor;
@@ -90,7 +90,7 @@ shared_ptr<CLineSegment> Program::ReadLineSegment(stringstream& ss)
 	return shared_ptr<CLineSegment>(new CLineSegment(a, b, Utils::ParseColor(outlineColor)));
 }
 
-shared_ptr<CTriangle> Program::ReadTriangle(stringstream& ss)
+shared_ptr<CTriangle> Program::ReadTriangle(stringstream& ss) const
 {
 	CPoint a, b, c;
 	string outlineColor, fillColor;
@@ -103,7 +103,7 @@ shared_ptr<CTriangle> Program::ReadTriangle(stringstream& ss)
 		Utils::ParseColor(fillColor)));
 }
 
-shared_ptr<CRectangle> Program::ReadRectangle(stringstream& ss)
+shared_ptr<CRectangle> Program::ReadRectangle(stringstream& ss) const
 {
 	CPoint a;
 	double width, height;
@@ -117,7 +117,7 @@ shared_ptr<CRectangle> Program::ReadRectangle(stringstream& ss)
 		Utils::ParseColor(fillColor)));
 }
 
-shared_ptr<CCircle> Program::ReadCircle(stringstream& ss)
+shared_ptr<CCircle> Program::ReadCircle(stringstream& ss) const
 {
 	double ax, ay, radius;
 	string outlineColor, fillColor;
@@ -132,11 +132,11 @@ shared_ptr<CCircle> Program::ReadCircle(stringstream& ss)
 		Utils::ParseColor(fillColor)));
 }
 
-shared_ptr<IShape> Program::FindWithMaxArea()
+ shared_ptr<IShape> Program::FindWithMaxArea() const
 {
 	if (m_shapes.size())
 	{
-		auto element = max_element(m_shapes.begin(), m_shapes.end(), [](shared_ptr<IShape>& a, shared_ptr<IShape>& b) {
+		auto element = max_element(m_shapes.begin(), m_shapes.end(), [](const shared_ptr<IShape>& a, const shared_ptr<IShape>& b) {
 			return a->GetArea() < b->GetArea();
 		});
 		return *element;
@@ -144,11 +144,11 @@ shared_ptr<IShape> Program::FindWithMaxArea()
 	return nullptr;
 }
 
-shared_ptr<IShape> Program::FindWithMinPerimeter()
+shared_ptr<IShape> Program::FindWithMinPerimeter() const
 {
 	if (m_shapes.size())
 	{
-		auto element = min_element(m_shapes.begin(), m_shapes.end(), [](shared_ptr<IShape>& a, shared_ptr<IShape>& b) {
+		auto element = min_element(m_shapes.begin(), m_shapes.end(), [](const shared_ptr<IShape>& a, const shared_ptr<IShape>& b) {
 			return a->GetPerimeter() < b->GetPerimeter();
 		});
 		return *element;
@@ -156,7 +156,7 @@ shared_ptr<IShape> Program::FindWithMinPerimeter()
 	return nullptr;
 }
 
-shared_ptr<IShape> Program::GetShapeByIndex(int index)
+shared_ptr<IShape> Program::GetShapeByIndex(int index) const
 {
 	return m_shapes[index];
 }
