@@ -136,7 +136,7 @@ shared_ptr<IShape> Program::FindWithMaxArea()
 {
 	if (m_shapes.size())
 	{
-		auto element = max_element(m_shapes.begin(), m_shapes.end(), [](shared_ptr<IShape> a, shared_ptr<IShape> b) {
+		auto element = max_element(m_shapes.begin(), m_shapes.end(), [](shared_ptr<IShape>& a, shared_ptr<IShape>& b) {
 			return a->GetArea() < b->GetArea();
 		});
 		return *element;
@@ -148,7 +148,7 @@ shared_ptr<IShape> Program::FindWithMinPerimeter()
 {
 	if (m_shapes.size())
 	{
-		auto element = min_element(m_shapes.begin(), m_shapes.end(), [](shared_ptr<IShape> a, shared_ptr<IShape> b) {
+		auto element = min_element(m_shapes.begin(), m_shapes.end(), [](shared_ptr<IShape>& a, shared_ptr<IShape>& b) {
 			return a->GetPerimeter() < b->GetPerimeter();
 		});
 		return *element;
