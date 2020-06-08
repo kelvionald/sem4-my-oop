@@ -90,6 +90,12 @@
     <ClCompile Include="TestsGeneratorSolidShape.cpp">
       <Filter>Исходные файлы\Helpers</Filter>
     </ClCompile>
+    <ClCompile Include="..\lab4\ISolidShape.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lab4\main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lab4\CCircle.h">

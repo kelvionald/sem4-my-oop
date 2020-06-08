@@ -14,6 +14,7 @@ public:
 	CPoint GetRightBottom() const;
 	double GetWidth() const;
 	double GetHeight() const;
+	~CRectangle();
 
 private:
 	CPoint m_leftTop;

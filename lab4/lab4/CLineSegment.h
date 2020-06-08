@@ -12,6 +12,7 @@ public:
 	virtual uint32_t GetOutlineColor() const override;
 	CPoint GetStartPoint() const;
 	CPoint GetEndPoint() const;
+	~CLineSegment();
 
 private:
 	uint32_t m_outlineColor;

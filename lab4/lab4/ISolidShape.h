@@ -9,4 +9,5 @@ private:
 
 public:
 	virtual uint32_t GetFillColor() const = 0;
+	~ISolidShape();
 };

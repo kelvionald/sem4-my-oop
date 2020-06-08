@@ -42,3 +42,7 @@ CPoint CCircle::GetCenter() const
 {
 	return m_center;
 }
+
+CCircle::~CCircle()
+{
+}

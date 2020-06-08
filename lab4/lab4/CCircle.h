@@ -11,6 +11,7 @@ public:
 	virtual std::string ToString() const override;
 	double GetRadius() const;
 	CPoint GetCenter() const;
+	~CCircle();
 
 private:
 	CPoint m_center;

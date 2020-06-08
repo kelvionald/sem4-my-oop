@@ -52,3 +52,7 @@ double CRectangle::GetHeight() const
 {
 	return m_height;
 }
+
+CRectangle::~CRectangle()
+{
+}

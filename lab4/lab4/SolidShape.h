@@ -10,6 +10,7 @@ public:
 	virtual std::string ToString() const override = 0;
 	virtual uint32_t GetOutlineColor() const override;
 	virtual uint32_t GetFillColor() const override;
+	~SolidShape();
 
 protected:
 	uint32_t m_outlineColor;

@@ -175,6 +175,8 @@
     <ClCompile Include="..\lab4\CPoint.cpp" />
     <ClCompile Include="..\lab4\CRectangle.cpp" />
     <ClCompile Include="..\lab4\CTriangle.cpp" />
+    <ClCompile Include="..\lab4\ISolidShape.cpp" />
+    <ClCompile Include="..\lab4\main.cpp" />
     <ClCompile Include="..\lab4\Utils.cpp" />
     <ClCompile Include="..\lab4\IShape.cpp" />
     <ClCompile Include="..\lab4\Program.cpp" />

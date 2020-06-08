@@ -49,3 +49,7 @@ CPoint CTriangle::GetVertex3() const
 {
 	return m_c;
 }
+
+CTriangle::~CTriangle()
+{
+}

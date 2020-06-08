@@ -15,3 +15,7 @@ uint32_t SolidShape::GetFillColor() const
 {
 	return m_fillColor;
 }
+
+SolidShape::~SolidShape()
+{
+}
