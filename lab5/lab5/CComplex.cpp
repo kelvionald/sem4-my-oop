@@ -89,34 +89,28 @@ CComplex CComplex::operator-() const
 	return 0 - *this;
 }
 
-CComplex CComplex::operator+=(const CComplex& a)
+CComplex& operator+=(CComplex& a, const CComplex& b)
 {
-	m_real += a.Re();
-	m_image += a.Im();
-	return *this;
+	a = { a.Re() + b.Re(), a.Im() + b.Im() };
+	return a;
 }
 
-CComplex CComplex::operator-=(const CComplex& a)
+CComplex& operator-=(CComplex& a, const CComplex& b)
 {
-	m_real -= a.Re();
-	m_image -= a.Im();
-	return *this;
+	a = { a.Re() - b.Re(), a.Im() - b.Im() };
+	return a;
 }
 
-CComplex CComplex::operator*=(const CComplex& a)
+CComplex& operator*=(CComplex& a, const CComplex& b)
 {
-	CComplex b = *this * a;
-	m_real = b.Re();
-	m_image = b.Im();
-	return *this;
+	a = a * b;
+	return a;
 }
 
-CComplex CComplex::operator/=(const CComplex& a)
+CComplex& operator/=(CComplex& a, const CComplex& b)
 {
-	CComplex b = *this / a;
-	m_real = b.Re();
-	m_image = b.Im();
-	return *this;
+	a = a / b;
+	return a;
 }
 
 bool CComplex::operator==(const CComplex& a) const

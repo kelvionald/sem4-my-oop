@@ -14,10 +14,10 @@ public:
 	CComplex operator/(const CComplex& a) const;
 	CComplex operator+() const;
 	CComplex operator-() const;
-	CComplex operator+=(const CComplex& a);
-	CComplex operator-=(const CComplex& a);
-	CComplex operator*=(const CComplex& a);
-	CComplex operator/=(const CComplex& a);
+	friend CComplex& operator+=(CComplex& a, const CComplex& b);
+	friend CComplex& operator-=(CComplex& a, const CComplex& b);
+	friend CComplex& operator*=(CComplex& a, const CComplex& b);
+	friend CComplex& operator/=(CComplex& a, const CComplex& b);
 	bool operator==(const CComplex& a) const;
 	bool operator!=(const CComplex& a) const;
 

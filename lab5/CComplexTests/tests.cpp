@@ -167,6 +167,12 @@ TEST_CASE("CComplex")
 			REQUIRE(c.Re() == 3);
 			REQUIRE(c.Im() == 2);
 		}
+		SECTION("(complex += real) += real")
+		{
+			CComplex a(1, 0);
+			(a += 2) += 3;
+			CHECK(a.Re() == 6);
+		}
 	}
 	SECTION("operator -=")
 	{
@@ -184,6 +190,12 @@ TEST_CASE("CComplex")
 			REQUIRE(c.Re() == 1);
 			REQUIRE(c.Im() == 2);
 		}
+		SECTION("(complex -= real) -= real")
+		{
+			CComplex a(1, 0);
+			(a -= 2) -= 3;
+			CHECK(a.Re() == -4);
+		}
 	}
 	SECTION("operator *=")
 	{
@@ -200,6 +212,12 @@ TEST_CASE("CComplex")
 			c *= 2;
 			REQUIRE(c.Re() == 4);
 			REQUIRE(c.Im() == 4);
+		}
+		SECTION("(complex *= real) *= real")
+		{
+			CComplex a(2, 0);
+			(a *= 2) *= 3;
+			CHECK(a.Re() == 12);
 		}
 	}
 	SECTION("operator /=")
@@ -222,6 +240,12 @@ TEST_CASE("CComplex")
 		{
 			CComplex c = a;
 			REQUIRE_THROWS(c /= 0);
+		}
+		SECTION("(complex /= real) /= real")
+		{
+			CComplex a(12, 0);
+			(a /= 2) /= 3;
+			CHECK(a.Re() == 2);
 		}
 	}
 	SECTION("operator ==")
