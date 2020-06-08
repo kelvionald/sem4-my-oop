@@ -107,32 +107,32 @@ bool CComplex::operator!=(const CComplex& a) const
 	return !(*this == a);
 }
 
-CComplex operator+(const double a, const CComplex b)
+CComplex operator+(double a, const CComplex& b)
 {
 	return CComplex(b.Re() + a, b.Im());
 }
 
-CComplex operator-(const double a, const CComplex b)
+CComplex operator-(double a, const CComplex& b)
 {
 	return CComplex(a - b.Re(), - b.Im());
 }
 
-CComplex operator*(const double a, const CComplex b)
+CComplex operator*(double a, const CComplex& b)
 {
 	return CComplex(a) * b;
 }
 
-CComplex operator/(const double a, const CComplex b)
+CComplex operator/(double a, const CComplex& b)
 {
 	return CComplex(a) / b;
 }
 
-bool operator==(const double a, const CComplex b)
+bool operator==(double a, const CComplex& b)
 {
 	return CComplex(a) == b;
 }
 
-bool operator!=(const double a, const CComplex b)
+bool operator!=(double a, const CComplex& b)
 {
 	return !(CComplex(a) == b);
 }

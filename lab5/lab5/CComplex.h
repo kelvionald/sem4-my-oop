@@ -26,9 +26,9 @@ private:
 	double m_image;
 };
 
-CComplex operator+(const double a, const CComplex b);
-CComplex operator-(const double a, const CComplex b);
-CComplex operator*(const double a, const CComplex b);
-CComplex operator/(const double a, const CComplex b);
-bool operator==(const double a, const CComplex b);
-bool operator!=(const double a, const CComplex b);
+CComplex operator+(double a, const CComplex& b);
+CComplex operator-(double a, const CComplex& b);
+CComplex operator*(double a, const CComplex& b);
+CComplex operator/(double a, const CComplex& b);
+bool operator==(double a, const CComplex& b);
+bool operator!=(double a, const CComplex& b);
