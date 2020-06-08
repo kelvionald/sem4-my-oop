@@ -3,6 +3,7 @@
 #include <cmath>
 #include <exception>
 #include <cfloat>
+#include <stdexcept>
 
 using namespace std;
 
@@ -54,7 +55,7 @@ CComplex CComplex::operator/(const CComplex& a) const
 	double denominator = pow(a.Re(), 2) + pow(a.Im(), 2);
 	if (denominator == 0)
 	{
-		throw exception("division by zero");
+		throw invalid_argument("division by zero");
 	}
 	double real = m_real * a.Re() + m_image * a.Im();
 	double image = m_image * a.Re() - m_real * a.Im();
