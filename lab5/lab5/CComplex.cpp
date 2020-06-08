@@ -29,25 +29,7 @@ double CComplex::GetMagnitude() const
 
 double CComplex::GetArgument() const
 {
-	if (m_real == 0)
-	{
-		return 0;
-	}
-	else if (m_real > 0)
-	{
-		return atan(m_image / m_real);
-	}
-	else
-	{
-		if (m_image > 0)
-		{
-			return M_PI + atan(m_image / m_real);
-		}
-		else
-		{
-			return - M_PI + atan(m_image / m_real);
-		}
-	}	
+	return atan2(m_image, m_real);
 }
 
 CComplex CComplex::operator+(const CComplex& a) const
