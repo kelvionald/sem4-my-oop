@@ -34,12 +34,13 @@ private:
 	unsigned short m_port;
 	std::string m_document;
 	std::string m_domain;
-	bool IsPortBelongsProtocol(Protocol protocol, unsigned short port) const;
-	Protocol DetermineProtocol(std::string const& protocolStr) const;
-	unsigned short DeterminePort(std::string const& portStr, Protocol& protocol) const;
+
+	static bool IsPortBelongsProtocol(Protocol protocol, unsigned short port);
+	static Protocol DetermineProtocol(std::string const& protocolStr);
+	static unsigned short DeterminePort(std::string const& portStr, Protocol& protocol);
 	void FillDocument(std::string const& document);
-	unsigned short GetPortByProtocol(Protocol protocol) const;
+	static unsigned short GetPortByProtocol(Protocol protocol);
 	void SetDomain(std::string const& domain);
 	void SetPort(unsigned short port);
-	bool IsCorrectPort(unsigned short port) const;
+	static bool IsCorrectPort(unsigned short port);
 };

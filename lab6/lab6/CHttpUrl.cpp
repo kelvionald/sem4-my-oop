@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Protocol CHttpUrl::DetermineProtocol(string const& protocolStr) const
+Protocol CHttpUrl::DetermineProtocol(string const& protocolStr)
 {
 	string protocolStrMutable = protocolStr;
 	transform(protocolStrMutable.begin(), protocolStrMutable.end(), protocolStrMutable.begin(), tolower);
@@ -24,7 +24,7 @@ Protocol CHttpUrl::DetermineProtocol(string const& protocolStr) const
 	}
 }
 
-unsigned short CHttpUrl::DeterminePort(string const& portStr, Protocol& protocol) const
+unsigned short CHttpUrl::DeterminePort(string const& portStr, Protocol& protocol)
 {
 	int port;
 	if (portStr.size())
@@ -58,7 +58,7 @@ void CHttpUrl::FillDocument(std::string const& document)
 	}
 }
 
-unsigned short CHttpUrl::GetPortByProtocol(Protocol protocol) const
+unsigned short CHttpUrl::GetPortByProtocol(Protocol protocol)
 {
 	switch (protocol)
 	{
@@ -89,7 +89,7 @@ void CHttpUrl::SetPort(unsigned short port)
 	m_port = port;
 }
 
-bool CHttpUrl::IsCorrectPort(unsigned short port) const
+bool CHttpUrl::IsCorrectPort(unsigned short port)
 {
 	return 1 <= port && port <= 65535;
 }
@@ -139,7 +139,7 @@ std::string CHttpUrl::GetStrProtocol(Protocol protocol) const
 	throw invalid_argument("Undefined protocol");
 }
 
-bool CHttpUrl::IsPortBelongsProtocol(Protocol protocol, unsigned short port) const
+bool CHttpUrl::IsPortBelongsProtocol(Protocol protocol, unsigned short port)
 {
 	return protocol == Protocol::HTTP && port == CHttpUrl::PORT_HTTP
 		|| protocol == Protocol::HTTPS && port == CHttpUrl::PORT_HTTPS;
