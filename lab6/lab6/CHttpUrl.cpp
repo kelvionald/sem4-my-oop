@@ -80,7 +80,7 @@ void CHttpUrl::SetDomain(std::string const& domain)
 	m_domain = domain;
 }
 
-void CHttpUrl::SetPort(unsigned short port)
+void CHttpUrl::SetPort(int port)
 {
 	if (!IsCorrectPort(port))
 	{
@@ -89,7 +89,7 @@ void CHttpUrl::SetPort(unsigned short port)
 	m_port = port;
 }
 
-bool CHttpUrl::IsCorrectPort(unsigned short port)
+bool CHttpUrl::IsCorrectPort(int port)
 {
 	return 1 <= port && port <= 65535;
 }

@@ -41,6 +41,6 @@ private:
 	void FillDocument(std::string const& document);
 	static unsigned short GetPortByProtocol(Protocol protocol);
 	void SetDomain(std::string const& domain);
-	void SetPort(unsigned short port);
-	static bool IsCorrectPort(unsigned short port);
+	void SetPort(int port);
+	static bool IsCorrectPort(int port);
 };

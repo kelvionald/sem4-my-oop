@@ -80,6 +80,11 @@ TEST_CASE("CHttpUrl")
 		SECTION("incorrect urls")
 		{
 			CHttpUrl* url;
+			SECTION("incorrect port")
+			{
+				string link = "http://127.0.0.1:80000/";
+				REQUIRE_THROWS(url = new CHttpUrl(link));
+			}
 			SECTION("unexpected protocol")
 			{
 				string link = "ftp://127.0.0.1/";
