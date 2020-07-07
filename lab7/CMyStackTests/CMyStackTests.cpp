@@ -192,7 +192,7 @@ TEST_CASE("CMyStack")
 		REQUIRE(stack2.Pop() == "world");
 		REQUIRE(stack2.Pop() == "Hello");
 	}
-	SECTION("default constructor")
+	SECTION("check work with default constructor")
 	{
 		CMyStack<CMyPoint> stack1;
 		CMyPoint p1;
