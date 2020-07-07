@@ -21,9 +21,9 @@ public:
 
 private:
 	const int m_INITIAL_SIZE = 32;
-	int m_size;
+	int m_maxSize;
 	T* m_stack;
-	int m_current;
+	int m_size;
 	void ExpandSize();
 	void InitByStack(const CMyStack<T>& stack);
 };
@@ -31,19 +31,19 @@ private:
 template <typename T>
 inline CMyStack<T>::CMyStack()
 {
-	m_size = m_INITIAL_SIZE;
-	m_stack = new T[m_size];
-	m_current = 0;
+	m_maxSize = m_INITIAL_SIZE;
+	m_stack = new T[m_maxSize];
+	m_size = 0;
 }
 
 template <typename T>
 inline void CMyStack<T>::Push(T const& element)
 {
-	if (m_current < m_size)
+	if (m_size < m_maxSize)
 	{
 		ExpandSize();
 	}
-	m_stack[m_current++] = element;
+	m_stack[m_size++] = element;
 }
 
 template <typename T>
@@ -53,7 +53,7 @@ inline T CMyStack<T>::Pop()
 	{
 		throw std::underflow_error("stack is empty");
 	}
-	return m_stack[--m_current];
+	return m_stack[--m_size];
 }
 
 template <typename T>
@@ -63,19 +63,19 @@ inline T CMyStack<T>::Top() const
 	{
 		throw std::underflow_error("stack is empty");
 	}
-	return m_stack[m_current - 1];
+	return m_stack[m_size - 1];
 }
 
 template <typename T>
 inline bool CMyStack<T>::IsEmpty() const
 {
-	return m_current == 0;
+	return m_size == 0;
 }
 
 template <typename T>
 inline void CMyStack<T>::Clear()
 {
-	m_current = 0;
+	m_size = 0;
 }
 
 template <typename T>
@@ -104,43 +104,43 @@ inline CMyStack<T>::~CMyStack()
 template <typename T>
 inline void CMyStack<T>::InitByStack(const CMyStack<T>& stack)
 {
+	m_maxSize = stack.m_maxSize;
 	m_size = stack.m_size;
-	m_current = stack.m_current;
 	delete[] m_stack;
-	m_stack = new T[m_size];
-	std::copy(stack.m_stack, stack.m_stack + m_current, m_stack);
+	m_stack = new T[m_maxSize];
+	std::copy(stack.m_stack, stack.m_stack + m_size, m_stack);
 }
 
 template <typename T>
 inline CMyStack<T>::CMyStack(CMyStack&& stack)
-	: m_current(stack.m_current)
-	, m_size(stack.m_size)
+	: m_size(stack.m_size)
+	, m_maxSize(stack.m_maxSize)
 	, m_stack(stack.m_stack)
 {
-	stack.m_current = 0;
+	stack.m_size = 0;
 	stack.m_stack = nullptr;
-	stack.m_size = m_INITIAL_SIZE;
+	stack.m_maxSize = m_INITIAL_SIZE;
 }
 
 template <typename T>
 inline CMyStack<T>& CMyStack<T>::operator=(const CMyStack<T>&& stack)
 {
-	m_current(stack.m_current);
 	m_size(stack.m_size);
+	m_maxSize(stack.m_maxSize);
 	m_stack(stack.m_stack);
-	stack.m_current = 0;
+	stack.m_size = 0;
 	stack.m_stack = nullptr;
-	stack.m_size = m_INITIAL_SIZE;
+	stack.m_maxSize = m_INITIAL_SIZE;
 }
 
 template <typename T>
 inline void CMyStack<T>::ExpandSize()
 {
-	int new_size = m_size * 2;
+	int new_size = m_maxSize * 2;
 	T* stack = new T[new_size];
 	try
 	{
-		std::copy(m_stack, m_stack + m_size, stack);
+		std::copy(m_stack, m_stack + m_maxSize, stack);
 	}
 	catch (std::exception& ex)
 	{
