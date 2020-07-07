@@ -21,15 +21,20 @@ public:
 
 private:
 	const int m_INITIAL_SIZE = 32;
-	int m_size = m_INITIAL_SIZE;
-	T* m_stack = new T[m_INITIAL_SIZE];
-	int m_current = 0;
+	int m_size;
+	T* m_stack;
+	int m_current;
 	void ExpandSize();
 	void InitByStack(const CMyStack<T>& stack);
 };
 
 template <typename T>
-inline CMyStack<T>::CMyStack() {}
+inline CMyStack<T>::CMyStack()
+{
+	m_size = m_INITIAL_SIZE;
+	m_stack = new T[m_size];
+	m_current = 0;
+}
 
 template <typename T>
 inline void CMyStack<T>::Push(T const& element)
