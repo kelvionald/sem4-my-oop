@@ -133,7 +133,15 @@ inline void CMyStack<T>::ExpandSize()
 {
 	int new_size = m_size * 2;
 	T* stack = new T[new_size];
-	std::copy(m_stack, m_stack + m_size, stack);
+	try
+	{
+		std::copy(m_stack, m_stack + m_size, stack);
+	}
+	catch (std::exception& ex)
+	{
+		delete[] stack;
+		throw ex;
+	}
 	delete[] m_stack;
 	m_stack = stack;
 }
