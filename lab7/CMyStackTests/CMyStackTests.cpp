@@ -2,7 +2,6 @@
 #include <catch2/catch.hpp>
 #include <utility>
 #include <string>
-#include <stack>
 
 using namespace std;
 

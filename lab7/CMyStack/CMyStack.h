@@ -115,11 +115,9 @@ template <typename T>
 inline CMyStack<T>::CMyStack(CMyStack&& stack)
 	: m_size(stack.m_size)
 	, m_maxSize(stack.m_maxSize)
-	, m_stack(stack.m_stack)
+	, m_stack(std::move(stack.m_stack))
 {
-	stack.m_size = 0;
 	stack.m_stack = nullptr;
-	stack.m_maxSize = m_INITIAL_SIZE;
 }
 
 template <typename T>
@@ -127,10 +125,8 @@ inline CMyStack<T>& CMyStack<T>::operator=(const CMyStack<T>&& stack)
 {
 	m_size(stack.m_size);
 	m_maxSize(stack.m_maxSize);
-	m_stack(stack.m_stack);
-	stack.m_size = 0;
+	m_stack(std::move(stack.m_stack));
 	stack.m_stack = nullptr;
-	stack.m_maxSize = m_INITIAL_SIZE;
 }
 
 template <typename T>
