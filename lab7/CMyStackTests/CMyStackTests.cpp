@@ -2,8 +2,16 @@
 #include <catch2/catch.hpp>
 #include <utility>
 #include <string>
+#include <stack>
 
 using namespace std;
+
+class CMyPoint
+{
+public:
+	int x;
+	int y;
+};
 
 TEST_CASE("CMyStack")
 {
@@ -183,5 +191,17 @@ TEST_CASE("CMyStack")
 		REQUIRE(!stack2.IsEmpty());
 		REQUIRE(stack2.Pop() == "world");
 		REQUIRE(stack2.Pop() == "Hello");
+	}
+	SECTION("default constructor")
+	{
+		CMyStack<CMyPoint> stack1;
+		CMyPoint p1;
+		p1.x = 123;
+		p1.y = 456;
+		stack1.Push(p1);
+		p1 = stack1.Pop();
+		REQUIRE(stack1.IsEmpty());
+		REQUIRE(p1.x == 123);
+		REQUIRE(p1.y == 456);
 	}
 }
