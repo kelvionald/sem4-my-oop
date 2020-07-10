@@ -53,7 +53,9 @@ inline T CMyStack<T>::Pop()
 	{
 		throw std::underflow_error("stack is empty");
 	}
-	return m_stack[--m_size];
+	m_size--;
+	T element = std::move(m_stack[m_size]);
+	return element;
 }
 
 template <typename T>
