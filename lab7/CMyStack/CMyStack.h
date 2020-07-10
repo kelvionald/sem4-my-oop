@@ -105,10 +105,13 @@ template <typename T>
 inline void CMyStack<T>::InitByStack(const CMyStack<T>& stack)
 {
 	m_maxSize = stack.m_maxSize;
+	T* tmp = new T[m_maxSize];
+
 	m_size = stack.m_size;
+	std::copy(stack.m_stack, stack.m_stack + m_size, tmp);
+
 	delete[] m_stack;
-	m_stack = new T[m_maxSize];
-	std::copy(stack.m_stack, stack.m_stack + m_size, m_stack);
+	m_stack = tmp;
 }
 
 template <typename T>
