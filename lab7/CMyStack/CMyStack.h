@@ -112,6 +112,7 @@ inline void CMyStack<T>::InitByStack(const CMyStack<T>& stack)
 	CItem* donorTopItem = stack.m_top.get();
 	if (!donorTopItem)
 	{
+		m_top = nullptr;
 		return;
 	}
 

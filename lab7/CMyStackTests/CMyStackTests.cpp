@@ -95,18 +95,6 @@ TEST_CASE("CMyStack")
 			REQUIRE(stack.IsEmpty());
 		}
 	}
-	SECTION("auto expand size")
-	{
-		CMyStack<int> stack;
-		for (int i = 0; i < 34; i++)
-		{
-			stack.Push(i);
-		}
-		for (int i = 33; i >= 0; i--)
-		{
-			REQUIRE(stack.Pop() == i);
-		}
-	}
 	SECTION("copy constructor")
 	{
 		SECTION("empty")
