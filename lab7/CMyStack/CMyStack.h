@@ -1,6 +1,7 @@
 #pragma once
 #include <algorithm>
 #include <cstdlib>
+#include <memory>
 #include <stdexcept>
 
 template <typename T>
@@ -20,30 +21,31 @@ public:
 	~CMyStack();
 
 private:
-	const int m_INITIAL_SIZE = 32;
-	int m_maxSize;
-	T* m_stack;
-	int m_size;
-	void ExpandSize();
 	void InitByStack(const CMyStack<T>& stack);
+	struct CItem
+	{
+		CItem(T v, std::shared_ptr<CItem> n)
+			: value(v)
+			, next(n)
+		{
+		}
+		T value;
+		std::shared_ptr<CItem> next;
+	};
+	typedef std::shared_ptr<CItem> PrtItem;
+	PrtItem m_top;
 };
 
 template <typename T>
 inline CMyStack<T>::CMyStack()
 {
-	m_maxSize = m_INITIAL_SIZE;
-	m_stack = new T[m_maxSize];
-	m_size = 0;
+	m_top = nullptr;
 }
 
 template <typename T>
 inline void CMyStack<T>::Push(T const& element)
 {
-	if (m_size < m_maxSize)
-	{
-		ExpandSize();
-	}
-	m_stack[m_size++] = element;
+	m_top = make_shared<CItem>(element, m_top);
 }
 
 template <typename T>
@@ -53,9 +55,9 @@ inline T CMyStack<T>::Pop()
 	{
 		throw std::underflow_error("stack is empty");
 	}
-	m_size--;
-	T element = std::move(m_stack[m_size]);
-	return element;
+	T g = m_top->value;
+	m_top = m_top->next;
+	return g;
 }
 
 template <typename T>
@@ -65,19 +67,22 @@ inline T CMyStack<T>::Top() const
 	{
 		throw std::underflow_error("stack is empty");
 	}
-	return m_stack[m_size - 1];
+	return m_top->value;
 }
 
 template <typename T>
 inline bool CMyStack<T>::IsEmpty() const
 {
-	return m_size == 0;
+	return !m_top;
 }
 
 template <typename T>
 inline void CMyStack<T>::Clear()
 {
-	m_size = 0;
+	while (!IsEmpty())
+	{
+		Pop();
+	}
 }
 
 template <typename T>
@@ -99,55 +104,39 @@ inline CMyStack<T>& CMyStack<T>::operator=(const CMyStack<T>& stack)
 
 template <typename T>
 inline CMyStack<T>::~CMyStack()
-{
-	delete[] m_stack;
-}
+{}
 
 template <typename T>
 inline void CMyStack<T>::InitByStack(const CMyStack<T>& stack)
 {
-	m_maxSize = stack.m_maxSize;
-	T* tmp = new T[m_maxSize];
+	CItem* donorTopItem = stack.m_top.get();
+	if (!donorTopItem)
+	{
+		return;
+	}
 
-	m_size = stack.m_size;
-	std::copy(stack.m_stack, stack.m_stack + m_size, tmp);
-
-	delete[] m_stack;
-	m_stack = tmp;
+	m_top = make_shared<CItem>(donorTopItem->value, nullptr);
+	PrtItem donorCurrentItem = stack.m_top;
+	PrtItem currentPtr = m_top;
+	while (donorCurrentItem->next)
+	{
+		donorCurrentItem = donorCurrentItem->next;
+		PrtItem tmp = make_shared<CItem>(donorCurrentItem->value, nullptr);
+		currentPtr->next = tmp;
+		currentPtr = tmp;
+	};
 }
 
 template <typename T>
 inline CMyStack<T>::CMyStack(CMyStack&& stack)
-	: m_size(stack.m_size)
-	, m_maxSize(stack.m_maxSize)
-	, m_stack(std::move(stack.m_stack))
+	: m_top(std::move(stack.m_top))
 {
-	stack.m_stack = nullptr;
+	stack.m_top = nullptr;
 }
 
 template <typename T>
 inline CMyStack<T>& CMyStack<T>::operator=(const CMyStack<T>&& stack)
 {
-	m_size(stack.m_size);
-	m_maxSize(stack.m_maxSize);
-	m_stack(std::move(stack.m_stack));
-	stack.m_stack = nullptr;
-}
-
-template <typename T>
-inline void CMyStack<T>::ExpandSize()
-{
-	int new_size = m_maxSize * 2;
-	T* stack = new T[new_size];
-	try
-	{
-		std::copy(m_stack, m_stack + m_maxSize, stack);
-	}
-	catch (std::exception& ex)
-	{
-		delete[] stack;
-		throw ex;
-	}
-	delete[] m_stack;
-	m_stack = stack;
+	m_top(std::move(stack.m_top));
+	stack.m_top = nullptr;
 }
