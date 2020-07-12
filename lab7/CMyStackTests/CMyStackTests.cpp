@@ -7,9 +7,23 @@ using namespace std;
 
 class CMyPoint
 {
+	int m_x;
+	int m_y;
+
 public:
-	int x;
-	int y;
+	CMyPoint(int x, int y)
+	{
+		m_x = x;
+		m_y = y;
+	}
+	int getX()
+	{
+		return m_x;
+	}
+	int getY()
+	{
+		return m_y;
+	}
 };
 
 TEST_CASE("CMyStack")
@@ -179,16 +193,14 @@ TEST_CASE("CMyStack")
 		REQUIRE(stack2.Pop() == "world");
 		REQUIRE(stack2.Pop() == "Hello");
 	}
-	SECTION("check work with default constructor")
+	SECTION("check work without default constructor")
 	{
 		CMyStack<CMyPoint> stack1;
-		CMyPoint p1;
-		p1.x = 123;
-		p1.y = 456;
+		CMyPoint p1(123, 456);
 		stack1.Push(p1);
 		p1 = stack1.Pop();
 		REQUIRE(stack1.IsEmpty());
-		REQUIRE(p1.x == 123);
-		REQUIRE(p1.y == 456);
+		REQUIRE(p1.getX() == 123);
+		REQUIRE(p1.getY() == 456);
 	}
 }
