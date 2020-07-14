@@ -2,14 +2,15 @@
 #include <vector>
 #include <cassert>
 #include <list>
+#include <stdexcept>
 
 using namespace std;
 
-template <class T, class _Pr>
-int CountIf(T first, T last, _Pr pred)
+template <class T, class Pred>
+int CountIf(T first, T last, Pred pred)
 {
 	int c = 0;
-	for (; first != last; ++first) {
+	for (; first != last; first++) {
 		if (pred(*first)) {
 			c++;
 		}
@@ -79,7 +80,8 @@ int main()
 		Джофри Баратеон (м)
 		Кхал Дрого (м)
 	*/
-	list<Student> students = {
+	list<Student> students = 
+	{
 		{ "Джон Сноу", Gender::MALE },
 		{ "Тирион Ланистер", Gender::MALE },
 		{ "Дайнерис Таргариен", Gender::FEMALE },
