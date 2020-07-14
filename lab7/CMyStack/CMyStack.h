@@ -130,7 +130,7 @@ inline void CMyStack<T>::InitByStack(const CMyStack<T>& stack)
 
 template <typename T>
 inline CMyStack<T>::CMyStack(CMyStack&& stack)
-	: m_top(std::move(stack.m_top))
+	: m_top(stack.m_top)
 {
 	stack.m_top = nullptr;
 }
@@ -138,6 +138,6 @@ inline CMyStack<T>::CMyStack(CMyStack&& stack)
 template <typename T>
 inline CMyStack<T>& CMyStack<T>::operator=(const CMyStack<T>&& stack)
 {
-	m_top(std::move(stack.m_top));
+	m_top(stack.m_top);
 	stack.m_top = nullptr;
 }
